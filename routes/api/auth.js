@@ -1,6 +1,5 @@
 import { PrismaClient } from '@prisma/client'
 import express from 'express'
-import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
 import auth from '../../middleware/auth'
 import dotenv from 'dotenv'
@@ -50,12 +49,7 @@ router.post('/login', async (req, res) => {
 			.json('Please provide a valid email address and password.')
 	try {
 		//Validate password
-		bcrypt.compare(password, user.password).then((isMach) => {
-			if (!isMach)
-				return res
-					.status(400)
-					.json('Please provide a valid email address and password.')
-
+		if (password === user.password) {
 			jwt.sign(
 				{ id: user.id },
 				process.env.PRIVATE_KEY,
@@ -71,7 +65,11 @@ router.post('/login', async (req, res) => {
 					})
 				}
 			)
-		})
+		} else {
+			return res
+				.status(400)
+				.json('Please provide a valid email address and password.')
+		}
 	} catch (error) {
 		res.status(500)
 	}
