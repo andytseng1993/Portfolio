@@ -1,7 +1,7 @@
 import { PrismaClient } from '@prisma/client'
 import express from 'express'
 import jwt from 'jsonwebtoken'
-import auth from '../../middleware/auth'
+import auth from '../../middleware/auth.mjs'
 import dotenv from 'dotenv'
 
 dotenv.config()
