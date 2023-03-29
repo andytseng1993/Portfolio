@@ -1,0 +1,39 @@
+.loading {
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(40, 20, 121);
+}
+
+.container {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  display: flex;
+  place-content: center;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0);
+  border-radius: 30px;
+}
+
+.item {
+  width: 70%;
+  overflow: visible;
+  stroke: #fff;
+  stroke-width: 2;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+
+.yu {
+  top: 45px;
+  left: 45px;
+  position: absolute;
+  font-size: 40px;
+  font-weight: 800;
+  font-family: "Lucida Sans", Arial, sans-serif;
+  color: #fff;
+}
