@@ -14,7 +14,7 @@ const LoadingPage = ({ isLoading }: Props) => {
 					className={classes.loading}
 					key="modal"
 					initial={{ opacity: 1 }}
-					exit={{ opacity: 0.5, height: '30px' }}
+					exit={{ opacity: 0 }}
 					transition={{ delay: 1.8, duration: 0.5 }}
 				>
 					<motion.div
@@ -47,7 +47,7 @@ const LoadingPage = ({ isLoading }: Props) => {
 							exit="closed"
 							transition={{ duration: 0.5, delay: 0.7 }}
 						>
-							YU
+							YT
 						</motion.div>
 					</motion.div>
 				</motion.div>
@@ -87,7 +87,7 @@ const container = {
 	visible: {
 		rotateX: [0, 180, 360],
 		transition: {
-			duration: 1,
+			duration: 2,
 			ease: 'easeInOut',
 			times: [0, 0.5, 1],
 			repeat: Infinity,
