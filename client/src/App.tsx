@@ -1,5 +1,6 @@
 import { Suspense, useEffect, useState } from 'react'
 import './App.css'
+import 'bootstrap/dist/css/bootstrap.css'
 import LoadingPage from './loading/LoadingPage'
 import WelcomePage from './pages/WelcomePage'
 import AboutPage from './pages/AboutPage'
@@ -7,12 +8,12 @@ import ProjectPage from './pages/ProjectPage'
 import NavBar from './pages/NavBar'
 
 function App() {
-	const [isLoading, setIsLoading] = useState(false)
+	const [isLoading, setIsLoading] = useState(true)
 	useEffect(() => {
 		setIsLoading(true)
 		setTimeout(() => {
 			setIsLoading(false)
-		}, 5000)
+		}, 4000)
 	}, [])
 	return (
 		<div style={{ color: 'white' }}>

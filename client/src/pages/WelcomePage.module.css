@@ -1,0 +1,42 @@
+.dash {
+  margin: 50px auto;
+  display: inline;
+  position: relative;
+  font-size: 90px;
+  font-weight: 1000;
+  background: linear-gradient(to right, #ff2424, #fff177);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  letter-spacing: 1px;
+  font-family: 'Lucida Sans', Arial, sans-serif;
+}
+
+.dash::after {
+  content: '';
+  width: 1px;
+  height: 30px;
+  position: relative;
+  border-right: 2px solid white;
+  animation: 1s ease-in 6s 15 both dash;
+  opacity: 0
+}
+
+@keyframes dash {
+  24% {
+    opacity: 0
+  }
+
+  25% {
+    opacity: 1;
+  }
+
+  75% {
+    opacity: 1;
+  }
+
+  76% {
+    opacity: 0
+  }
+
+}
