@@ -14,7 +14,7 @@ const LoadingPage = ({ isLoading }: Props) => {
 					className={classes.loading}
 					key="modal"
 					initial={{ opacity: 1 }}
-					exit={{ opacity: 0 }}
+					exit={{ opacity: 0.5, height: '30px' }}
 					transition={{ delay: 1.8, duration: 0.5 }}
 				>
 					<motion.div

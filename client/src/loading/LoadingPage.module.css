@@ -5,7 +5,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgb(40, 20, 121);
+  background-color: rgb(14, 6, 49);
 }
 
 .container {
@@ -29,7 +29,7 @@
 }
 
 .yu {
-  top: 45px;
+  top: 55px;
   left: 45px;
   position: absolute;
   font-size: 40px;
