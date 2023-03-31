@@ -1,24 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Catamaran:wght@600;700;800&display=swap');
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: min(15vh, 100px);
+  flex-wrap: nowrap;
+}
+
 .dash {
-  margin: 50px auto;
-  display: inline;
+  display: inline-block;
   position: relative;
-  font-size: 90px;
-  font-weight: 1000;
-  background: linear-gradient(to right, #ff2424, #fff177);
+  font-size: max(7.5vw, 50px);
+  font-weight: 800;
+  background: linear-gradient(to right, #a7e2ff, #fffa62);
   background-clip: text;
   -webkit-background-clip: text;
   color: transparent;
-  letter-spacing: 1px;
-  font-family: 'Lucida Sans', Arial, sans-serif;
+  font-family: Catamaran, Arial, sans-serif;
+  white-space: nowrap;
 }
 
 .dash::after {
   content: '';
   width: 1px;
-  height: 30px;
   position: relative;
   border-right: 2px solid white;
-  animation: 1s ease-in 6s 15 both dash;
+  animation: 1s ease-in 6s 18 both dash;
   opacity: 0
 }
 
@@ -38,5 +47,86 @@
   76% {
     opacity: 0
   }
+}
 
+.name {
+  font-size: max(3vw, 30px);
+  font-family: Catamaran, Arial, sans-serif;
+  letter-spacing: 1px;
+  font-weight: 700;
+}
+
+.content {
+  width: max(60vw, 300px);
+  font-size: max(2.5vw, 20px);
+  font-family: Catamaran, Arial, sans-serif;
+  letter-spacing: 1px;
+  font-weight: 600;
+  text-align: center;
+  color: aqua;
+}
+
+.scrollElements {
+  position: absolute;
+  display: flex;
+
+  transform: translate(-50%, -50%);
+  left: 95%;
+  top: 85vh;
+}
+
+.scroll {
+  z-index: 10;
+  color: white;
+  font-weight: 600;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  margin-right: 5px;
+  font-family: Catamaran, Arial, sans-serif;
+  letter-spacing: 2px;
+}
+
+.scrollDown {
+  position: absolute;
+  right: -1px;
+  width: 2px;
+  background-color: white;
+  z-index: 10;
+  animation: 2s scroll 6s 8 both;
+  opacity: 0;
+}
+
+@keyframes scroll {
+  0% {
+    opacity: 0;
+    transform: translateY(0vh);
+    height: 0px;
+  }
+
+  50% {
+    opacity: 1;
+    transform: translateY(0vh);
+    height: 80px;
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(17vh);
+    height: 0px;
+  }
+}
+
+.item {
+  width: 70%;
+  height: 10vh;
+  position: absolute;
+  top: 0;
+  left: 100%;
+  transform: translateX(-50%);
+  overflow: visible;
+  stroke: white;
+  stroke-width: 0.4px;
+  stroke-linejoin: miter;
+  stroke-linecap: round;
+  fill: none;
 }

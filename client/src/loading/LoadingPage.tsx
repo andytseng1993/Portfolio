@@ -75,7 +75,6 @@ const icon = {
 	},
 	closed: {
 		opacity: 0,
-		pathLength: 0,
 		strokeWidth: '0px',
 		transition: {
 			duration: 0.8,

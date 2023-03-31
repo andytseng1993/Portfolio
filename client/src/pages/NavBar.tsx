@@ -6,7 +6,7 @@ const NavBar = ({ children }: PropsWithChildren) => {
 	return (
 		<>
 			<Navbar expand="md" bg="dark" variant="dark">
-				<Container fluid>
+				<Container fluid className={classes.navBar}>
 					<Navbar.Brand className="justify-content-center align-items-center">
 						<div className={classes.container}>
 							<svg
@@ -25,8 +25,8 @@ const NavBar = ({ children }: PropsWithChildren) => {
 						className="justify-content-end align-items-center"
 					>
 						<Nav>
-							<Nav.Item className="me-4">About</Nav.Item>
-							<Nav.Item className="me-4">Project</Nav.Item>
+							<Nav.Item className={`${classes.nav} me-4`}>About</Nav.Item>
+							<Nav.Item className={`${classes.nav} me-4`}>Project</Nav.Item>
 						</Nav>
 					</Navbar.Collapse>
 				</Container>
