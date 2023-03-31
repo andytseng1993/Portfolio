@@ -1,4 +1,8 @@
 const ProjectPage = () => {
-	return <div>Project!</div>
+	return (
+		<div style={{ height: '100vh' }}>
+			<h1>Project!</h1>
+		</div>
+	)
 }
 export default ProjectPage

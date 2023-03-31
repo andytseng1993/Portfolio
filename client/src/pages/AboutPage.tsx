@@ -1,5 +1,9 @@
 const AboutPage = () => {
-	return <div>About me</div>
+	return (
+		<div style={{ height: '100vh' }}>
+			<h1>About me</h1>
+		</div>
+	)
 }
 
 export default AboutPage

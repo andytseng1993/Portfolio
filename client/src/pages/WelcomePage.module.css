@@ -5,14 +5,14 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  margin-top: min(15vh, 100px);
   flex-wrap: nowrap;
+  height: calc(100vh - 76px);
 }
 
 .dash {
   display: inline-block;
   position: relative;
-  font-size: max(7.5vw, 50px);
+  font-size: max(8vw, 50px);
   font-weight: 800;
   background: linear-gradient(to right, #a7e2ff, #fffa62);
   background-clip: text;
@@ -50,7 +50,7 @@
 }
 
 .name {
-  font-size: max(3vw, 30px);
+  font-size: max(6vw, 30px);
   font-family: Catamaran, Arial, sans-serif;
   letter-spacing: 1px;
   font-weight: 700;
@@ -58,12 +58,13 @@
 
 .content {
   width: max(60vw, 300px);
-  font-size: max(2.5vw, 20px);
+  font-size: max(5vw, 24px);
   font-family: Catamaran, Arial, sans-serif;
   letter-spacing: 1px;
   font-weight: 600;
   text-align: center;
   color: aqua;
+  margin-top: 10px;
 }
 
 .scrollElements {
@@ -71,7 +72,7 @@
   display: flex;
 
   transform: translate(-50%, -50%);
-  left: 95%;
+  left: 90vw;
   top: 85vh;
 }
 
