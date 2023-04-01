@@ -1,0 +1,42 @@
+.nav {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 100vw;
+  height: 120vh;
+  z-index: 50;
+  background-color: 'transparent'
+}
+
+.circle {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 350px;
+  background: #120f3a;
+  border-right: 2px solid rgb(73, 52, 178);
+  z-index: 100;
+}
+
+.svg {
+  width: 25px;
+  height: 25px;
+}
+
+.btn {
+  z-index: 100;
+  outline: none;
+  border: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  cursor: pointer;
+  background: transparent;
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  top: 18px;
+  left: 15px;
+}

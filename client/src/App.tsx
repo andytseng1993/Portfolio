@@ -8,6 +8,16 @@ import ProjectPage from './pages/ProjectPage'
 import NavBar from './pages/NavBar'
 import ScrollTriggerSection from './component/ScrollTriggerSection'
 
+export const lockScroll = () => {
+	const scrollBarCompensation = window.innerWidth - document.body.offsetWidth
+	document.body.style.overflow = 'hidden'
+	document.body.style.paddingRight = `${scrollBarCompensation}px`
+}
+export const scroll = () => {
+	document.body.style.overflowY = 'scroll'
+	document.body.style.paddingRight = 'auto'
+}
+
 function App() {
 	const [isLoading, setIsLoading] = useState(true)
 	useEffect(() => {
@@ -17,17 +27,8 @@ function App() {
 			setIsLoading(false)
 		}, 4000)
 		setTimeout(() => {
-			Scroll()
+			scroll()
 		}, 6000)
-	}, [])
-	const lockScroll = useCallback(() => {
-		const scrollBarCompensation = window.innerWidth - document.body.offsetWidth
-		document.body.style.overflow = 'hidden'
-		document.body.style.paddingRight = `${scrollBarCompensation}px`
-	}, [])
-	const Scroll = useCallback(() => {
-		document.body.style.overflowY = 'auto'
-		document.body.style.paddingRight = 'auto'
 	}, [])
 
 	return (

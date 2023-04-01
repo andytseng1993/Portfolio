@@ -30,8 +30,12 @@
 }
 
 .container:hover>.item {
-  fill: rgb(49, 31, 131);
+  fill: rgb(48, 23, 157);
+  cursor: pointer;
+}
 
+.container:active {
+  transform: translate(1px, 1px);
 }
 
 .yt {
@@ -43,6 +47,9 @@
   font-weight: 500;
   font-family: "Lucida Sans", Arial, sans-serif;
   color: #fff;
+  cursor: pointer;
+  -webkit-user-select: none;
+  user-select: none;
 }
 
 .navItems {

@@ -1,5 +1,6 @@
 import { PropsWithChildren } from 'react'
 import { Container, Navbar, Nav, Offcanvas } from 'react-bootstrap'
+import SideMenu from '../component/side menu/SideMenu'
 import classes from './NavBar.module.css'
 
 const NavBar = ({ children }: PropsWithChildren) => {
@@ -27,6 +28,7 @@ const NavBar = ({ children }: PropsWithChildren) => {
 						<Nav>
 							<Nav.Item className={`${classes.nav} me-4`}>About</Nav.Item>
 							<Nav.Item className={`${classes.nav} me-4`}>Project</Nav.Item>
+							<SideMenu />
 						</Nav>
 					</Navbar.Collapse>
 				</Container>
