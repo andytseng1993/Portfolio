@@ -9,4 +9,8 @@ body {
 
 #root {
   background-color: rgb(22, 10, 75);
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
 }

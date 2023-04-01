@@ -20,6 +20,7 @@
   color: transparent;
   font-family: Catamaran, Arial, sans-serif;
   white-space: nowrap;
+  z-index: 0;
 }
 
 .dash::after {
@@ -70,14 +71,17 @@
 .scrollElements {
   position: absolute;
   display: flex;
-
   transform: translate(-50%, -50%);
   left: 90vw;
   top: 85vh;
+  z-index: 10;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
 }
 
 .scroll {
-  z-index: 10;
   color: white;
   font-weight: 600;
   writing-mode: vertical-rl;

@@ -32,12 +32,12 @@ const MenuToggle = ({ toggle = () => {} }) => {
 			>
 				<Path
 					variants={{
-						closed: { d: 'M 3 2.5 L 11 2.5' },
-						open: { d: 'M 3 2.5 L 17 16.346' },
+						closed: { d: 'M8 2.5 L 17 2.5' },
+						open: { d: 'M 3 16.5 L 17 2.5' },
 					}}
 				/>
 				<Path
-					d="M 3 9.423 L 14 9.423"
+					d="M 6 9.423 L 17 9.423"
 					variants={{
 						closed: { opacity: 1 },
 						open: { opacity: 0 },
@@ -46,7 +46,7 @@ const MenuToggle = ({ toggle = () => {} }) => {
 				<Path
 					variants={{
 						closed: { d: 'M 3 16.346 L 17 16.346' },
-						open: { d: 'M 3 16.5 L 17 2.5' },
+						open: { d: 'M3 2.5 L 17 16.346' },
 					}}
 				/>
 			</svg>

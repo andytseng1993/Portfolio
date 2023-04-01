@@ -1,18 +1,22 @@
 .nav {
   position: absolute;
   top: 0;
-  left: 0;
+  right: 0;
   bottom: 0;
   width: 100vw;
   height: 120vh;
-  z-index: 50;
-  background-color: 'transparent'
+  z-index: 1;
+  background-color: 'transparent';
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
 }
 
 .circle {
   position: absolute;
   top: 0;
-  left: 0;
+  right: 0;
   bottom: 0;
   width: 350px;
   background: #120f3a;
@@ -38,5 +42,5 @@
   width: 50px;
   height: 50px;
   top: 18px;
-  left: 15px;
+  right: 25px;
 }

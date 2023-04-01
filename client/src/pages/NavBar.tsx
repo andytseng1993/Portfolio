@@ -26,8 +26,8 @@ const NavBar = ({ children }: PropsWithChildren) => {
 						className="justify-content-end align-items-center"
 					>
 						<Nav>
-							<Nav.Item className={`${classes.nav} me-4`}>About</Nav.Item>
-							<Nav.Item className={`${classes.nav} me-4`}>Project</Nav.Item>
+							{/* <Nav.Item className={`${classes.nav} me-4`}>About</Nav.Item>
+							<Nav.Item className={`${classes.nav} me-4`}>Project</Nav.Item> */}
 							<SideMenu />
 						</Nav>
 					</Navbar.Collapse>
