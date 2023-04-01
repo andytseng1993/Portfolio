@@ -6,6 +6,7 @@ import WelcomePage from './pages/WelcomePage'
 import AboutPage from './pages/AboutPage'
 import ProjectPage from './pages/ProjectPage'
 import NavBar from './pages/NavBar'
+import ScrollTriggerSection from './component/ScrollTriggerSection'
 
 function App() {
 	const [isLoading, setIsLoading] = useState(true)
@@ -30,7 +31,7 @@ function App() {
 	}, [])
 
 	return (
-		<div style={{ color: 'white', overflowY: 'hidden' }}>
+		<div style={{ color: 'white', overflowX: 'hidden' }}>
 			<Suspense fallback={<div className="loading"></div>}>
 				<LoadingPage isLoading={isLoading} />
 				<NavBar>

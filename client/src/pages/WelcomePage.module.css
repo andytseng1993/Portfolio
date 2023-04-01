@@ -6,13 +6,13 @@
   align-items: center;
   flex-direction: column;
   flex-wrap: nowrap;
-  height: calc(100vh - 76px);
+  height: calc(100vh - 75px);
 }
 
 .dash {
   display: inline-block;
   position: relative;
-  font-size: max(8vw, 50px);
+  font-size: max(8vw, 90px);
   font-weight: 800;
   background: linear-gradient(to right, #a7e2ff, #fffa62);
   background-clip: text;
@@ -50,7 +50,7 @@
 }
 
 .name {
-  font-size: max(6vw, 30px);
+  font-size: max(4vw, 40px);
   font-family: Catamaran, Arial, sans-serif;
   letter-spacing: 1px;
   font-weight: 700;
@@ -58,7 +58,7 @@
 
 .content {
   width: max(60vw, 300px);
-  font-size: max(5vw, 24px);
+  font-size: max(3vw, 28px);
   font-family: Catamaran, Arial, sans-serif;
   letter-spacing: 1px;
   font-weight: 600;
@@ -93,7 +93,7 @@
   width: 2px;
   background-color: white;
   z-index: 10;
-  animation: 2s scroll 6s 8 both;
+  animation: 2s scroll 6s 7 both;
   opacity: 0;
 }
 

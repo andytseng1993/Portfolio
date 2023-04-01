@@ -13,7 +13,7 @@ const WelcomePage = () => {
 				thereArray.pop()
 				const newWords = thereArray.join('')
 				setWord('Hello  ' + newWords)
-			}, 9000 + i * 1000)
+			}, 9000 + i * 750)
 		}
 		const world = 'world  !'
 		const worldArray = world.split('')
@@ -21,17 +21,17 @@ const WelcomePage = () => {
 			setTimeout(() => {
 				const str = worldArray.shift() ?? ''
 				setWord((pre) => pre + str)
-			}, 15000 + i * 750)
+			}, 13500 + i * 500)
 		}
 	}, [])
 
 	return (
 		<div className={classes.container}>
-			<div className={classes.dash}>{word}</div>
-			<div className={classes.name}>I'm Yuhsien Tseng.</div>
-			<div className={classes.content}>
+			<h1 className={classes.dash}>{word}</h1>
+			<p className={classes.name}>I'm Yuhsien Tseng.</p>
+			<p className={classes.content}>
 				A Frontend focused Web Developer building the Frontend of Websites.
-			</div>
+			</p>
 			<div className={classes.scrollElements}>
 				<div className={classes.scroll}>scroll</div>
 				<div className={classes.scrollDown}></div>
@@ -46,10 +46,6 @@ const WelcomePage = () => {
 							variants={icon}
 							initial={{ opacity: 0, pathLength: 0 }}
 							animate="visible"
-							transition={{
-								delay: 10,
-								duration: 1,
-							}}
 						/>
 					</motion.svg>
 				</motion.div>
@@ -67,8 +63,8 @@ const icon = {
 		strokeWidth: '0.7px',
 		stroke: 'rgb(255, 255, 255)',
 		transition: {
-			delay: 22,
-			duration: 1.5,
+			delay: 19,
+			duration: 0.7,
 			ease: 'easeInOut',
 		},
 	},
