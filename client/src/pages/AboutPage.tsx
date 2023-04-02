@@ -2,7 +2,7 @@ import ScrollTriggerSection from '../component/ScrollTriggerSection'
 
 const AboutPage = () => {
 	return (
-		<section style={{ height: '100vh' }}>
+		<section id="About" style={{ height: '100vh' }}>
 			<ScrollTriggerSection>
 				<h1>About me</h1>
 			</ScrollTriggerSection>

@@ -19,8 +19,8 @@
   right: 0;
   bottom: 0;
   width: 350px;
-  background: #120f3a;
-  border-right: 2px solid rgb(73, 52, 178);
+  background: #211c68;
+  border-left: 2px solid rgb(56, 37, 150);
   z-index: 100;
 }
 
@@ -33,9 +33,6 @@
   z-index: 100;
   outline: none;
   border: none;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
   cursor: pointer;
   background: transparent;
   position: absolute;

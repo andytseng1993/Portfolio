@@ -26,14 +26,16 @@ const WelcomePage = () => {
 	}, [])
 
 	return (
-		<div className={classes.container}>
+		<div className={classes.container} id="Home">
 			<h1 className={classes.dash}>{word}</h1>
 			<p className={classes.name}>I'm Yuhsien Tseng.</p>
 			<p className={classes.content}>
 				A Frontend focused Web Developer building the Frontend of Websites.
 			</p>
 			<div className={classes.scrollElements}>
-				<div className={classes.scroll}>scroll</div>
+				<a href="#About">
+					<div className={classes.scroll}>scroll</div>
+				</a>
 				<div className={classes.scrollDown}></div>
 				<motion.div className={classes.scrollDown2}>
 					<motion.svg

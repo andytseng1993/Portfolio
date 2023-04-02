@@ -21,6 +21,7 @@ const MenuToggle = ({ toggle = () => {} }) => {
 				scale: 1.1,
 				transition: { duration: 0.3 },
 			}}
+			whileTap={{ scale: 0.97 }}
 			onClick={toggle}
 		>
 			<svg

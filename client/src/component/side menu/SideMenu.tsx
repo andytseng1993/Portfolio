@@ -4,13 +4,12 @@ import classes from './SideMenu.module.css'
 import MenuToggle from './MenuToggle'
 import { useEffect } from 'react'
 import { lockScroll, scroll } from '../../App'
+import MenuItem from './MenuItem'
 
 const SideMenu = () => {
 	const [toggle, setToggle] = useCycle(false, true)
 
 	useEffect(() => {
-		console.log(toggle)
-
 		if (toggle) return lockScroll()
 		scroll()
 	}, [toggle])
@@ -24,6 +23,7 @@ const SideMenu = () => {
 		>
 			<motion.div className={classes.circle} variants={sidebar}>
 				<MenuToggle toggle={() => setToggle()} />
+				<MenuItem toggle={() => setToggle()} />
 			</motion.div>
 		</motion.nav>
 	)
@@ -38,7 +38,7 @@ const nav = {
 	},
 	closed: {
 		zIndex: 0,
-		transition: { duration: 1, delay: 1 },
+		transition: { duration: 1, delay: 0.3 },
 	},
 }
 const sidebar = {
@@ -53,7 +53,7 @@ const sidebar = {
 	closed: {
 		clipPath: 'circle(30px at 300px 40px)',
 		transition: {
-			delay: 0.2,
+			delay: 0.1,
 			type: 'spring',
 			stiffness: 400,
 			damping: 40,

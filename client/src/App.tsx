@@ -7,6 +7,7 @@ import AboutPage from './pages/AboutPage'
 import ProjectPage from './pages/ProjectPage'
 import NavBar from './pages/NavBar'
 import ScrollTriggerSection from './component/ScrollTriggerSection'
+import { useMotionValueEvent, useScroll } from 'framer-motion'
 
 export const lockScroll = () => {
 	const scrollBarCompensation = window.innerWidth - document.body.offsetWidth
@@ -20,6 +21,13 @@ export const scroll = () => {
 
 function App() {
 	const [isLoading, setIsLoading] = useState(true)
+	const { scrollY } = useScroll()
+
+	// useMotionValueEvent(scrollY, 'change', (latest) => {
+	// 	console.log('Page scroll: ', latest)
+	// })
+	console.log(scrollY)
+
 	useEffect(() => {
 		setIsLoading(true)
 		lockScroll()
