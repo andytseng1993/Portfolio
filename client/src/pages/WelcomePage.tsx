@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import classes from './WelcomePage.module.css'
 import { motion } from 'framer-motion'
+import { Link } from 'react-scroll'
 
 const WelcomePage = () => {
 	const [word, setWord] = useState('Hello  there.')
@@ -33,24 +34,24 @@ const WelcomePage = () => {
 				A Frontend focused Web Developer building the Frontend of Websites.
 			</p>
 			<div className={classes.scrollElements}>
-				<a href="#About">
+				<Link to="About" smooth={true} duration={200}>
 					<div className={classes.scroll}>scroll</div>
-				</a>
-				<div className={classes.scrollDown}></div>
-				<motion.div className={classes.scrollDown2}>
-					<motion.svg
-						xmlns="http://www.w3.org/2000/svg"
-						viewBox="0 0 6 30"
-						className={classes.item}
-					>
-						<motion.path
-							d="M3 0 3 40 6 35 0 35"
-							variants={icon}
-							initial={{ opacity: 0, pathLength: 0 }}
-							animate="visible"
-						/>
-					</motion.svg>
-				</motion.div>
+					<div className={classes.scrollDown}></div>
+					<motion.div className={classes.scrollDown2}>
+						<motion.svg
+							xmlns="http://www.w3.org/2000/svg"
+							viewBox="0 0 6 30"
+							className={classes.item}
+						>
+							<motion.path
+								d="M3 0 3 40 6 35 0 35"
+								variants={icon}
+								initial={{ opacity: 0, pathLength: 0 }}
+								animate="visible"
+							/>
+						</motion.svg>
+					</motion.div>
+				</Link>
 			</div>
 		</div>
 	)

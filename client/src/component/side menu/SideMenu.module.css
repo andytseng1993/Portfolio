@@ -41,3 +41,19 @@
   top: 18px;
   right: 25px;
 }
+
+.sideBar {
+  margin: 0;
+  padding: 20px 30px;
+}
+
+.items {
+  list-style: none;
+  cursor: pointer;
+  font-size: 30px;
+  margin-bottom: 10px;
+}
+
+.items.active {
+  color: #211c68;
+}

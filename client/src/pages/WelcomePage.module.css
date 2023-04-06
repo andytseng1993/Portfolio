@@ -70,9 +70,9 @@
 
 .scrollElements {
   position: absolute;
-  display: flex;
+  display: inline;
   transform: translate(-50%, -50%);
-  left: 90vw;
+  left: 93vw;
   top: 85vh;
   z-index: 10;
   user-select: none;
@@ -88,12 +88,14 @@
   text-orientation: mixed;
   margin-right: 5px;
   font-family: Catamaran, Arial, sans-serif;
-  letter-spacing: 2px;
+  letter-spacing: 3px;
+  cursor: pointer;
 }
 
 .scrollDown {
   position: absolute;
   right: -1px;
+  top: 0;
   width: 2px;
   background-color: white;
   z-index: 10;
@@ -121,8 +123,12 @@
   }
 }
 
+.scrollDown2 {
+  cursor: pointer;
+}
+
 .item {
-  width: 70%;
+  width: 20px;
   height: 10vh;
   position: absolute;
   top: 0;
@@ -130,7 +136,7 @@
   transform: translateX(-50%);
   overflow: visible;
   stroke: white;
-  stroke-width: 0.4px;
+  stroke-width: 0.3px;
   stroke-linejoin: miter;
   stroke-linecap: round;
   fill: none;

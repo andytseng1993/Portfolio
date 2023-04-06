@@ -1,11 +1,13 @@
 import { motion } from 'framer-motion'
-import { PropsWithChildren } from 'react'
+import { PropsWithChildren, useState } from 'react'
 import { Container, Navbar, Nav, Offcanvas } from 'react-bootstrap'
 import { animateScroll } from 'react-scroll'
 import SideMenu from '../component/side menu/SideMenu'
 import classes from './NavBar.module.css'
 
 const NavBar = ({ children }: PropsWithChildren) => {
+	const [lastScrollY, setLastScrollY] = useState(0)
+
 	const scrolltoTop = () => {
 		animateScroll.scrollToTop({ smooth: true, duration: 200 })
 	}

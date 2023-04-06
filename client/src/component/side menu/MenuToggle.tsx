@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion'
+import { color, motion } from 'framer-motion'
 import classes from './SideMenu.module.css'
 
 const Path = (props) => {
