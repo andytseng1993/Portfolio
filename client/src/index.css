@@ -18,3 +18,12 @@ html {
   -moz-user-select: none;
   -ms-user-select: none;
 }
+
+a {
+  cursor: pointer;
+}
+
+a.active {
+  color: #cecaff;
+  text-decoration: none;
+}

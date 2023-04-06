@@ -12,15 +12,16 @@ import { useMotionValueEvent, useScroll } from 'framer-motion'
 export const lockScroll = () => {
 	const scrollBarCompensation = window.innerWidth - document.body.offsetWidth
 	document.body.style.overflow = 'hidden'
-	document.body.style.paddingRight = `${scrollBarCompensation}px`
+	document.body.style.marginRight = `${scrollBarCompensation}px`
 }
 export const scroll = () => {
 	document.body.style.overflowY = 'scroll'
-	document.body.style.paddingRight = 'auto'
+	document.body.style.marginRight = 'auto'
 }
 
 function App() {
-	const [isLoading, setIsLoading] = useState(true)
+	console.log(window.innerWidth, document.body)
+	const [isLoading, setIsLoading] = useState(false)
 	const { scrollY } = useScroll()
 
 	// useMotionValueEvent(scrollY, 'change', (latest) => {
@@ -28,16 +29,16 @@ function App() {
 	// })
 	console.log(scrollY)
 
-	useEffect(() => {
-		setIsLoading(true)
-		lockScroll()
-		setTimeout(() => {
-			setIsLoading(false)
-		}, 4000)
-		setTimeout(() => {
-			scroll()
-		}, 6000)
-	}, [])
+	// useEffect(() => {
+	// 	setIsLoading(true)
+	// 	lockScroll()
+	// 	setTimeout(() => {
+	// 		setIsLoading(false)
+	// 	}, 4000)
+	// 	setTimeout(() => {
+	// 		scroll()
+	// 	}, 6000)
+	// }, [])
 
 	return (
 		<div style={{ color: 'white', overflowX: 'hidden' }}>

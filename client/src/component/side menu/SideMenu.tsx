@@ -21,7 +21,10 @@ const SideMenu = () => {
 			animate={toggle ? 'open' : 'closed'}
 			variants={nav}
 		>
-			<motion.div className={classes.circle} variants={sidebar}>
+			<motion.div
+				className={`${classes.circle} ${toggle ? classes.sideBarOpen : ''}`}
+				variants={sidebar}
+			>
 				<MenuToggle toggle={() => setToggle()} />
 				<MenuItem toggle={() => setToggle()} />
 			</motion.div>
@@ -43,7 +46,7 @@ const nav = {
 }
 const sidebar = {
 	open: {
-		clipPath: `circle(${1000 * 2 + 200}px at 300px 40px)`,
+		clipPath: `circle(${1000 * 2 + 200}px at 300px 35px)`,
 		transition: {
 			type: 'spring',
 			stiffness: 20,
@@ -51,12 +54,13 @@ const sidebar = {
 		},
 	},
 	closed: {
-		clipPath: 'circle(30px at 300px 40px)',
+		clipPath: 'circle(25px at 300px 35px)',
 		transition: {
 			delay: 0.1,
 			type: 'spring',
 			stiffness: 400,
 			damping: 40,
 		},
+		zIndex: 0,
 	},
 }

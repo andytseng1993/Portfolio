@@ -6,7 +6,7 @@
   align-items: center;
   flex-direction: column;
   flex-wrap: nowrap;
-  height: calc(100vh - 75px);
+  height: 101vh;
 }
 
 .dash {

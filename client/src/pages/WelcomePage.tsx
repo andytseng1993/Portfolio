@@ -66,7 +66,7 @@ const icon = {
 		strokeWidth: '0.7px',
 		stroke: 'rgb(255, 255, 255)',
 		transition: {
-			delay: 19,
+			delay: 20,
 			duration: 0.7,
 			ease: 'easeInOut',
 		},

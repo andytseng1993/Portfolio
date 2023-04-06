@@ -1,5 +1,5 @@
-import { motion } from 'framer-motion'
-import { PropsWithChildren, useState } from 'react'
+import { motion, useCycle } from 'framer-motion'
+import { PropsWithChildren, useEffect, useState } from 'react'
 import { Container, Navbar, Nav, Offcanvas } from 'react-bootstrap'
 import { animateScroll } from 'react-scroll'
 import SideMenu from '../component/side menu/SideMenu'
@@ -7,15 +7,40 @@ import classes from './NavBar.module.css'
 
 const NavBar = ({ children }: PropsWithChildren) => {
 	const [lastScrollY, setLastScrollY] = useState(0)
+	const [show, setShow] = useState(true)
 
+	useEffect(() => {
+		if (typeof window !== 'undefined') {
+			window.addEventListener('scroll', controlNavbar)
+			return () => {
+				window.removeEventListener('scroll', controlNavbar)
+			}
+		}
+	}, [lastScrollY])
+
+	const controlNavbar = () => {
+		if (typeof window !== 'undefined') {
+			if (window.scrollY > lastScrollY) {
+				setShow(false)
+			} else {
+				setShow(true)
+			}
+			setLastScrollY(window.scrollY)
+		}
+	}
 	const scrolltoTop = () => {
 		animateScroll.scrollToTop({ smooth: true, duration: 200 })
 	}
+
 	return (
 		<>
-			<Navbar expand="md" bg="dark" variant="dark">
-				<Container fluid className={classes.navBar}>
-					<Navbar.Brand className="justify-content-center align-items-center">
+			<nav
+				className={`${show ? classes.showNav : classes.hiddenNav} ${
+					classes.nav
+				}`}
+			>
+				<div className={classes.navBar}>
+					<div className="justify-content-center align-items-center">
 						<motion.div
 							className={classes.container}
 							initial={false}
@@ -35,10 +60,10 @@ const NavBar = ({ children }: PropsWithChildren) => {
 							</motion.svg>
 							<div className={classes.yt}>YT</div>
 						</motion.div>
-					</Navbar.Brand>
+					</div>
 					<SideMenu />
-				</Container>
-			</Navbar>
+				</div>
+			</nav>
 			{children}
 		</>
 	)

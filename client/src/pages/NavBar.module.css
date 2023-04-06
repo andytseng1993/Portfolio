@@ -1,3 +1,20 @@
+.nav {
+  background-color: #35117b;
+  padding: 10px 20px;
+  position: fixed;
+  width: 100%;
+  transition: top 0.3s;
+}
+
+.showNav {
+  top: 0;
+  z-index: 100;
+}
+
+.hiddenNav {
+  top: -100px;
+}
+
 .navBar {
   padding: 0px 30px;
   display: flex;
