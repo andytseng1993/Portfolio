@@ -112,3 +112,41 @@ export const init = (
 	}
 	return particleArray
 }
+
+export const connect = (
+	ctx: CanvasRenderingContext2D,
+	mouse: {
+		x: number
+		y: number
+	},
+	particleArray: ParticleType[],
+	particleDistance: number,
+	radius: number
+) => {
+	let opacityValue = 1
+	for (let a = 0; a < particleArray.length; a++) {
+		for (let b = a; b < particleArray.length; b++) {
+			let dx = particleArray[a].x - particleArray[b].x
+			let dy = particleArray[a].y - particleArray[b].y
+			let distance = Math.sqrt(dx * dx + dy * dy)
+			opacityValue = 1 - distance / particleDistance
+			ctx.strokeStyle = 'rgba(255,255,255,' + opacityValue + ')'
+			let mouseDx = particleArray[a].x - mouse.x
+			let mouseDy = particleArray[a].y - mouse.y
+			let mouseDistance = Math.sqrt(mouseDx * mouseDx + mouseDy * mouseDy)
+			let opacity = 1 - mouseDistance / radius
+			if (mouseDistance < radius) {
+				ctx.strokeStyle = `rgba(255,${255 * opacity},${
+					255 * opacity
+				},${opacityValue})`
+			}
+			if (distance < particleDistance) {
+				ctx.lineWidth = 2
+				ctx.beginPath()
+				ctx.moveTo(particleArray[a].x, particleArray[a].y)
+				ctx.lineTo(particleArray[b].x, particleArray[b].y)
+				ctx.stroke()
+			}
+		}
+	}
+}

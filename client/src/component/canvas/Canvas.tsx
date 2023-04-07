@@ -1,5 +1,5 @@
 import { MouseEvent, memo, useEffect, useMemo, useRef, useState } from 'react'
-import { draw, init, update } from './Particle'
+import { connect, draw, init, update } from './Particle'
 
 export interface ParticleType {
 	x: number
@@ -13,12 +13,12 @@ export interface ParticleType {
 
 const Canvas = memo(function Canvas(props: any) {
 	const canvasRef = useRef(null)
-	let adjustX = 100
-	let adjustY = 40
+	let adjustX = 100 //move to x
+	let adjustY = 40 //move to y
 	let scale = 18
 	let spreadSpeed = 5
-	let particleDistance = 50
-	let radius = 100
+	let particleDistance = 35
+	let radius = 80
 	let size = 2
 	let width = 950
 	let height = 600
@@ -34,8 +34,9 @@ const Canvas = memo(function Canvas(props: any) {
 			context.fillStyle = 'white'
 			context.font = '30px Verdana'
 			context.fillText('Y.T', 0, 25)
-			const textCoordinates = context.getImageData(0, 0, 50, 40)
+			const textCoordinates = context.getImageData(0, 0, 45, 26)
 			particleArray = init(textCoordinates, adjustX, adjustY, scale, size)
+
 			let animationFrameId: any
 			const render = () => {
 				context.clearRect(0, 0, width, height)
@@ -57,6 +58,7 @@ const Canvas = memo(function Canvas(props: any) {
 						)
 					}
 				})
+				connect(context, mouse, particleArray, particleDistance, radius)
 				animationFrameId = window.requestAnimationFrame(render)
 			}
 			render()
