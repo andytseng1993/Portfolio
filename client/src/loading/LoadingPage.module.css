@@ -22,7 +22,7 @@
 }
 
 .item {
-  width: 70%;
+  width: 80%;
   overflow: visible;
   stroke: #fff;
   stroke-width: 2;
@@ -32,8 +32,11 @@
 }
 
 .yu {
-  top: 45px;
-  left: 45px;
+  display: flex;
+  justify-items: center;
+  align-items: center;
+  top: 47px;
+  left: 46px;
   position: absolute;
   font-size: 40px;
   font-weight: 800;

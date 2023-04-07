@@ -84,19 +84,21 @@ const icon = {
 }
 const container = {
 	visible: {
-		rotateX: [0, 180, 360],
+		rotateZ: [0, 180, 360],
 		transition: {
-			duration: 2,
+			duration: 1.5,
 			ease: 'easeInOut',
 			times: [0, 0.5, 1],
 			repeat: Infinity,
 			repeatDelay: 0.5,
-			delay: 2,
+			delay: 0.5,
 		},
 	},
 	closed: {
-		rotateX: [0],
+		rotateZ: [0],
+		scale: 0,
 		transition: {
+			delay: 1,
 			duration: 1,
 		},
 	},

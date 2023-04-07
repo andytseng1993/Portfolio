@@ -15,15 +15,16 @@ const Canvas = memo(function Canvas(props: any) {
 	const canvasRef = useRef(null)
 	let adjustX = 100 //move to x
 	let adjustY = 40 //move to y
-	let scale = 18
+	let scale = 18.5
 	let spreadSpeed = 5
-	let particleDistance = 35
+	let particleDistance = 42
 	let radius = 80
 	let size = 2
 	let width = 950
 	let height = 600
 	let particleArray: ParticleType[] = []
 	let mouse = { x: 0, y: 0 }
+	let lastRender = 0
 
 	useEffect(() => {
 		if (canvasRef?.current) {
@@ -59,9 +60,17 @@ const Canvas = memo(function Canvas(props: any) {
 					}
 				})
 				connect(context, mouse, particleArray, particleDistance, radius)
-				animationFrameId = window.requestAnimationFrame(render)
 			}
-			render()
+			const animloop = () => {
+				animationFrameId = window.requestAnimationFrame(animloop)
+				let now = Date.now()
+				//30 fps rate
+				if (now >= lastRender + 32) {
+					render()
+					lastRender = now
+				}
+			}
+			animloop()
 			return () => {
 				window.cancelAnimationFrame(animationFrameId)
 			}
