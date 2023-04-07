@@ -20,14 +20,7 @@ export const scroll = () => {
 }
 
 function App() {
-	console.log(window.innerWidth, document.body)
 	const [isLoading, setIsLoading] = useState(false)
-	const { scrollY } = useScroll()
-
-	// useMotionValueEvent(scrollY, 'change', (latest) => {
-	// 	console.log('Page scroll: ', latest)
-	// })
-	console.log(scrollY)
 
 	// useEffect(() => {
 	// 	setIsLoading(true)

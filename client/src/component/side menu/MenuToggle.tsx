@@ -1,7 +1,7 @@
-import { color, motion } from 'framer-motion'
+import { MotionProps, color, motion } from 'framer-motion'
 import classes from './SideMenu.module.css'
 
-const Path = (props) => {
+const Path = (props: MotionProps) => {
 	return (
 		<motion.path
 			fill="transparent"

@@ -2,17 +2,26 @@
 
 .container {
   display: flex;
+  justify-content: start;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  height: 101vh;
+}
+
+.text {
+  display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  flex-wrap: nowrap;
-  height: 101vh;
+  margin-left: 5vw;
+  margin-top: 50px;
 }
 
 .dash {
   display: inline-block;
   position: relative;
-  font-size: max(8vw, 90px);
+  font-size: max(7vw, 80px);
   font-weight: 800;
   background: linear-gradient(to right, #a7e2ff, #fffa62);
   background-clip: text;
@@ -51,15 +60,15 @@
 }
 
 .name {
-  font-size: max(4vw, 40px);
+  font-size: max(3vw, 40px);
   font-family: Catamaran, Arial, sans-serif;
   letter-spacing: 1px;
   font-weight: 700;
 }
 
 .content {
-  width: max(60vw, 300px);
-  font-size: max(3vw, 28px);
+  width: max(45vw, 300px);
+  font-size: max(2.5vw, 28px);
   font-family: Catamaran, Arial, sans-serif;
   letter-spacing: 1px;
   font-weight: 600;

@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import classes from './WelcomePage.module.css'
 import { motion } from 'framer-motion'
 import { Link } from 'react-scroll'
+import Canvas from '../component/canvas/Canvas'
 
 const WelcomePage = () => {
 	const [word, setWord] = useState('Hello  there.')
@@ -28,11 +29,14 @@ const WelcomePage = () => {
 
 	return (
 		<div className={classes.container} id="Home">
-			<h1 className={classes.dash}>{word}</h1>
-			<p className={classes.name}>I'm Yuhsien Tseng.</p>
-			<p className={classes.content}>
-				A Frontend focused Web Developer building the Frontend of Websites.
-			</p>
+			<div className={classes.text}>
+				<h1 className={classes.dash}>{word}</h1>
+				<p className={classes.name}>I'm Yuhsien Tseng.</p>
+				<p className={classes.content}>
+					A Frontend focused Web Developer building the Frontend of Websites.
+				</p>
+			</div>
+			<Canvas />
 			<div className={classes.scrollElements}>
 				<Link to="About" smooth={true} duration={200}>
 					<div className={classes.scroll}>scroll</div>
