@@ -8,8 +8,9 @@ import ProjectPage from './pages/ProjectPage'
 import NavBar from './pages/NavBar'
 
 export const lockScroll = () => {
+	const scrollBarCompensation = window.innerWidth - document.body.offsetWidth
 	document.body.style.overflow = 'hidden'
-	document.body.style.marginRight = '15px'
+	document.body.style.marginRight = `${scrollBarCompensation}px`
 }
 export const scroll = () => {
 	document.body.style.overflowY = 'scroll'

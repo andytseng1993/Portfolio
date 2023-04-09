@@ -135,7 +135,16 @@ export const connect = (
 			let mouseDy = particleArray[a].y - mouse.y
 			let mouseDistance = Math.sqrt(mouseDx * mouseDx + mouseDy * mouseDy)
 			let opacity = 1 - mouseDistance / radius
+
 			if (mouseDistance < radius) {
+				ctx.lineWidth = 1
+				ctx.beginPath()
+				ctx.strokeStyle = `rgba(255,${255 * opacity},${
+					255 * opacity
+				},${opacity})`
+				ctx.moveTo(particleArray[a].x, particleArray[a].y)
+				ctx.lineTo(mouse.x, mouse.y)
+				ctx.stroke()
 				ctx.strokeStyle = `rgba(255,${255 * opacity},${
 					255 * opacity
 				},${opacityValue})`

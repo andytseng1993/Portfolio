@@ -3,7 +3,8 @@ body {
   padding: 0;
   width: 100vw;
   height: 100vh;
-  background-color: rgb(22, 10, 75);
+  /* background-color: rgb(22, 10, 75); */
+  background: linear-gradient(to right, #a7e2ff, rgb(29, 12, 107));
   overflow-x: hidden;
 }
 
@@ -12,7 +13,8 @@ html {
 }
 
 #root {
-  background-color: rgb(22, 10, 75);
+  /* background-color: rgb(22, 10, 75); */
+  background: linear-gradient(to top, #574bfd, rgb(46, 34, 100), rgb(7, 0, 41));
   user-select: none;
   -webkit-user-select: none;
   -moz-user-select: none;

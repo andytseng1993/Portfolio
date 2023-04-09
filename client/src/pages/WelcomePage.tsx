@@ -6,6 +6,7 @@ import Canvas from '../component/canvas/Canvas'
 
 const WelcomePage = () => {
 	const [word, setWord] = useState('Hello  there.')
+	// const [id,setId] = useState()
 
 	useEffect(() => {
 		const there = 'there.'
@@ -31,7 +32,20 @@ const WelcomePage = () => {
 		<div className={classes.container} id="Home">
 			<div className={classes.text}>
 				<h1 className={classes.dash}>{word}</h1>
-				<p className={classes.name}>I'm Yuhsien Tseng.</p>
+				<div className={classes.name}>
+					I'm{' '}
+					<strong className={`${classes.initialsAnimate} ${classes.initials}`}>
+						Y
+					</strong>
+					uhsien{' '}
+					<strong className={`${classes.initialsAnimate} ${classes.initials2}`}>
+						T
+					</strong>
+					seng
+					<div className={classes.wrapper}>
+						<div className={classes.dot}>.</div>
+					</div>
+				</div>
 				<p className={classes.content}>
 					A Frontend focused Web Developer building the Frontend of Websites.
 				</p>
