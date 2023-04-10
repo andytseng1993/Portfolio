@@ -1,6 +1,5 @@
-import { motion, useCycle } from 'framer-motion'
+import { motion } from 'framer-motion'
 import { PropsWithChildren, useEffect, useState } from 'react'
-import { Container, Navbar, Nav, Offcanvas } from 'react-bootstrap'
 import { animateScroll } from 'react-scroll'
 import SideMenu from '../component/side menu/SideMenu'
 import classes from './NavBar.module.css'

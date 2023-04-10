@@ -2,9 +2,9 @@
 
 .container {
   display: flex;
-  justify-content: start;
+  justify-content: center;
   align-items: center;
-  flex-direction: row;
+  flex-direction: row-reverse;
   flex-wrap: nowrap;
   height: 105vh;
 }
@@ -14,8 +14,7 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  margin-left: 5vw;
-  margin-top: 50px;
+  margin-top: 10vh;
   cursor: default;
 }
 
@@ -69,8 +68,8 @@
 }
 
 .content {
-  width: max(45vw, 300px);
-  font-size: max(2.5vw, 28px);
+  width: max(40vw, 400px);
+  font-size: max(2vw, 30px);
   font-family: Catamaran, Arial, sans-serif;
   letter-spacing: 1px;
   font-weight: 600;
@@ -242,7 +241,7 @@
 
 @keyframes doty {
   0% {
-    transform: translateY(-80px);
+    transform: translateY(-100px);
   }
 
   4% {
@@ -320,4 +319,115 @@
     transform: translateX(-140px)
   }
 
+}
+
+@media only screen and (max-width: 1250px) {
+  .container {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .text {
+    margin-top: 0;
+  }
+}
+
+@media only screen and (max-width: 414px) {
+  .dash {
+    font-size: 55px;
+  }
+
+  .name {
+    font-size: 33px;
+  }
+
+  .initials {
+    font-size: 43px;
+  }
+
+  .initials2 {
+    font-size: 43px;
+  }
+
+  @keyframes dot {
+    0% {
+      transform: translateX(-294px);
+    }
+
+    4% {
+      transform: translateX(-294px);
+    }
+
+    24% {
+      transform: translateX(-228px)
+    }
+
+    70% {
+      transform: translateX(-92px)
+    }
+
+  }
+
+  @keyframes doty {
+    0% {
+      transform: translateY(-70px);
+    }
+
+    4% {
+      animation-timing-function: cubic-bezier(.45, .83, .65, 1);
+      transform: translateY(-24px);
+    }
+
+    14% {
+      animation-timing-function: cubic-bezier(.35, 0, .55, .17);
+      transform: translateY(-100px);
+    }
+
+    24% {
+      animation-timing-function: cubic-bezier(.45, .83, .65, 1);
+      transform: translateY(-25px)
+    }
+
+    50% {
+      animation-timing-function: cubic-bezier(.35, 0, .55, .17);
+      transform: translateY(-10px);
+    }
+
+    70% {
+      animation-timing-function: cubic-bezier(.45, .83, .65, 1);
+      transform: translateY(-36px)
+    }
+
+    81% {
+      animation-timing-function: cubic-bezier(.35, 0, .55, .17);
+      transform: translateY(-100px)
+    }
+
+    92% {
+      transform: translateY(0px)
+    }
+
+
+    94% {
+      transform: translateY(-20px)
+    }
+
+    96% {
+      transform: translateY(0px)
+    }
+
+    98% {
+      transform: translateY(-7px)
+    }
+
+    100% {
+      transform: translateY(0px)
+    }
+  }
+
+  .content {
+    width: 330px;
+    font-size: 24px;
+  }
 }

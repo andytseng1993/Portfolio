@@ -29,3 +29,13 @@ a.active {
   color: #cecaff;
   text-decoration: none;
 }
+
+#nameCanvas {
+  margin-bottom: 20vh;
+}
+
+@media only screen and (max-width: 1250px) {
+  #nameCanvas {
+    margin-bottom: 0;
+  }
+}

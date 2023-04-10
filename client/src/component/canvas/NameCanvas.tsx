@@ -1,6 +1,13 @@
-import { MouseEvent, memo, useEffect, useMemo, useRef, useState } from 'react'
+import {
+	MouseEvent,
+	memo,
+	useEffect,
+	useLayoutEffect,
+	useRef,
+	useState,
+} from 'react'
 import { connect, draw, init, update } from './Particle'
-import { useCycle } from 'framer-motion'
+import { useMotionValueEvent, useScroll } from 'framer-motion'
 
 export interface ParticleType {
 	x: number
@@ -12,29 +19,49 @@ export interface ParticleType {
 	index: number
 }
 
-const Canvas = memo(function Canvas(props: any) {
+const NameCanvas = memo(function Canvas(props: any) {
 	const [view, setView] = useState(true)
+	const [windowWidth, setWindowWidth] = useState(1918)
 	const canvasRef = useRef(null)
-	let adjustX = 100 //move to x
-	let adjustY = 40 //move to y
-	let scale = 17
+	const { scrollY } = useScroll()
+	const ratio = windowWidth / 1918
+	let adjustX = 100 * ratio //move to x
+	let adjustY = 40 * ratio //move to y
+	let scale = Math.max(17 * ratio, 9.2)
 	let spreadSpeed = 4
-	let particleDistance = 40
-	let radius = 100
+	let particleDistance = Math.max(40 * ratio, 18)
+	let radius = Math.max(100 * ratio, 50)
 	let size = 2
-	let width = 1000
-	let height = 600
+	let width = Math.max(1000 * ratio, 500)
+	let height = Math.max(600 * ratio, 300)
+	if (windowWidth < 414) {
+		width = Math.max(1000 * ratio, 370)
+		height = Math.max(600 * ratio, 220)
+		scale = Math.max(17 * ratio, 7.4)
+		radius = Math.max(100 * ratio, 30)
+		particleDistance = Math.max(40 * ratio, 15)
+	}
 	let particleArray: ParticleType[] = []
 	let mouse = { x: 0, y: 0 }
 	let lastRender = 0
 	let animationFrameId: any
+
+	useLayoutEffect(() => {
+		setWindowWidth(window.innerWidth)
+		const resize = () => {
+			setWindowWidth(window.innerWidth)
+		}
+		window.addEventListener('resize', resize)
+		return () => window.removeEventListener('resize', resize)
+	}, [])
 
 	useEffect(() => {
 		if (canvasRef?.current) {
 			const canvas = canvasRef.current! as HTMLCanvasElement
 			canvas.width = width
 			canvas.height = height
-			const context = canvas.getContext('2d')!
+			const context = canvas.getContext('2d', { willReadFrequently: true })!
+
 			context.fillStyle = 'white'
 			context.font = '30px Verdana'
 			context.fillText('Y.T.', 0, 25)
@@ -81,24 +108,14 @@ const Canvas = memo(function Canvas(props: any) {
 		}
 	}, [particleArray, mouse, view])
 
-	useEffect(() => {
-		if (typeof window !== 'undefined') {
-			window.addEventListener('scroll', control)
-			return () => {
-				window.removeEventListener('scroll', control)
-			}
+	useMotionValueEvent(scrollY, 'change', (latest) => {
+		if (latest > 670) {
+			setView(false)
+			window.cancelAnimationFrame(animationFrameId)
+		} else {
+			setView(true)
 		}
-	}, [])
-	const control = () => {
-		if (typeof window !== 'undefined') {
-			if (window.scrollY > 670) {
-				setView(false)
-				window.cancelAnimationFrame(animationFrameId)
-			} else {
-				setView(true)
-			}
-		}
-	}
+	})
 
 	const handleMouseMove = (
 		event: MouseEvent<HTMLCanvasElement, globalThis.MouseEvent>
@@ -128,21 +145,20 @@ const Canvas = memo(function Canvas(props: any) {
 	}
 	return (
 		<canvas
+			id="nameCanvas"
 			ref={canvasRef}
 			{...props}
 			onMouseMove={(event) => handleMouseMove(event)}
 			onMouseLeave={handleMouseLeave}
 			onTouchMove={(event) => handleTouchMove(event)}
 			style={{
-				width: '1000px',
-				height: '600px',
-				position: 'absolute',
-				top: 70,
-				right: '3vw',
+				position: 'relative',
 				index: -1,
+				width: `${width}`,
+				height: `${height}`,
 			}}
 		/>
 	)
 })
 
-export default Canvas
+export default NameCanvas

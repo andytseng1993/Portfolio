@@ -22,8 +22,8 @@
   z-index: 100;
 }
 
-.sideBarOpen {
-  margin-right: 15px;
+.sideBarClose {
+  margin-right: -15px;
 }
 
 .svg {
@@ -45,12 +45,36 @@
 
 .sideBar {
   margin: 0;
+  margin-top: 30px;
   padding: 20px 30px;
 }
 
 .items {
+  position: relative;
+  padding: 5px 10px 5px 0px;
   list-style: none;
   font-size: 30px;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
   text-decoration: none;
+
+}
+
+
+.link {
+  padding-left: 30px;
+  padding-right: 150px;
+  text-decoration: none;
+  color: white;
+  border-left: 10px solid rgb(147, 137, 255);
+}
+
+.link:hover {
+  color: rgb(61, 152, 249);
+  border-left: 10px solid rgb(105, 92, 255);
+}
+
+@media only screen and (max-width: 414px) {
+  .sideBarClose {
+    margin-right: 0;
+  }
 }

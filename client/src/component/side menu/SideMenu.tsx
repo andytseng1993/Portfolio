@@ -22,7 +22,7 @@ const SideMenu = () => {
 			variants={nav}
 		>
 			<motion.div
-				className={`${classes.circle} ${toggle ? classes.sideBarOpen : ''}`}
+				className={`${classes.circle} ${toggle ? '' : classes.sideBarClose}`}
 				variants={sidebar}
 			>
 				<MenuToggle toggle={() => setToggle()} />
