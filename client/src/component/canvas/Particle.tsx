@@ -1,4 +1,3 @@
-import { Dispatch, SetStateAction } from 'react'
 import { ParticleType } from './NameCanvas'
 
 export const Particle = (x: number, y: number, size: number, index: number) => {
