@@ -31,7 +31,7 @@ const NameCanvas = memo(function Canvas(props: any) {
 	let spreadSpeed = 4
 	let particleDistance = Math.max(40 * ratio, 18)
 	let radius = Math.max(100 * ratio, 50)
-	let size = 2
+	let size = 2.5
 	let width = Math.max(1000 * ratio, 500)
 	let height = Math.max(600 * ratio, 300)
 	if (windowWidth < 414) {
@@ -58,13 +58,22 @@ const NameCanvas = memo(function Canvas(props: any) {
 	useEffect(() => {
 		if (canvasRef?.current) {
 			const canvas = canvasRef.current! as HTMLCanvasElement
-			canvas.width = width
-			canvas.height = height
 			const context = canvas.getContext('2d', { willReadFrequently: true })!
+			canvas.style.width = `${width}px`
+			canvas.style.height = `${height}px`
+			const { devicePixelRatio: deviceRatio = 1 } = window
+			const rect = canvas.getBoundingClientRect()
+			canvas.width =
+				Math.round(deviceRatio * rect.right) -
+				Math.round(deviceRatio * rect.left)
+			canvas.height =
+				Math.round(deviceRatio * rect.bottom) -
+				Math.round(deviceRatio * rect.top)
 
 			context.fillStyle = 'white'
 			context.font = '30px Verdana'
 			context.fillText('Y.T.', 0, 25)
+			context.scale(deviceRatio, deviceRatio)
 			const textCoordinates = context.getImageData(0, 0, 55, 26)
 			particleArray = init(textCoordinates, adjustX, adjustY, scale, size)
 
@@ -143,6 +152,9 @@ const NameCanvas = memo(function Canvas(props: any) {
 			y: 0,
 		}
 	}
+
+	console.log(width, height)
+
 	return (
 		<canvas
 			id="nameCanvas"
@@ -154,8 +166,6 @@ const NameCanvas = memo(function Canvas(props: any) {
 			style={{
 				position: 'relative',
 				index: -1,
-				width: `${width}`,
-				height: `${height}`,
 			}}
 		/>
 	)
