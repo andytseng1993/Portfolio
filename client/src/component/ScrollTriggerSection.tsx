@@ -1,4 +1,4 @@
-import { PropsWithChildren, useRef } from 'react'
+import { PropsWithChildren, StyleHTMLAttributes, useRef } from 'react'
 import { motion } from 'framer-motion'
 
 const ScrollTriggerSection = ({ children }: PropsWithChildren) => {
@@ -16,7 +16,7 @@ const ScrollTriggerSection = ({ children }: PropsWithChildren) => {
 						function: 'cubic-bezier(0.17, 0.55, 0.55, 1)',
 					},
 				}}
-				viewport={{ once: false }}
+				viewport={{ once: true }}
 			>
 				{children}
 			</motion.div>

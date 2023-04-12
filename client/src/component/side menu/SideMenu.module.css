@@ -19,6 +19,7 @@
   width: 350px;
   background: #211c68;
   border-left: 2px solid rgb(56, 37, 150);
+  box-shadow: inset 2px 0px 10px 0px rgb(42, 99, 255);
   z-index: 100;
 }
 
@@ -61,11 +62,14 @@
 
 
 .link {
+  font-family: Catamaran, Arial, sans-serif;
   padding-left: 30px;
   padding-right: 150px;
   text-decoration: none;
   color: white;
   border-left: 10px solid rgb(147, 137, 255);
+  font-size: 24px;
+  letter-spacing: 1px;
 }
 
 .link:hover {

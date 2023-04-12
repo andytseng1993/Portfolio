@@ -1,7 +1,14 @@
 import { MotionProps, color, motion } from 'framer-motion'
 import classes from './SideMenu.module.css'
 
-const Path = (props: MotionProps) => {
+interface Props {
+	d?: string
+	variants?: {
+		closed: { opacity?: number; d?: string }
+		open: { opacity?: number; d?: string }
+	}
+}
+const Path = (props: Props) => {
 	return (
 		<motion.path
 			fill="transparent"

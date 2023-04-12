@@ -1,0 +1,82 @@
+.content {
+  height: 105vh;
+  line-height: 1.5rem;
+  margin-right: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.title {
+  color: #ddd1ff;
+  font-size: 56px;
+  font-family: Catamaran, Arial, sans-serif;
+  font-weight: 700;
+  margin-bottom: 40px;
+  display: flex;
+  justify-items: center;
+  align-items: center;
+  text-shadow: 0 1px #000000, 0 2px #000000, 0 3px #000000, 0 4px #000000, 0 5px #000000, 0 6px #000000, 0 7px #000000, 0 8px #000000;
+  transform: translateY(-8px);
+}
+
+.title::after {
+  content: "";
+  display: block;
+  position: relative;
+  top: 0px;
+  width: 700px;
+  height: 1px;
+  margin-left: 20px;
+  background-color: rgb(255, 255, 255);
+}
+
+.context {
+  width: 500px;
+  line-height: 1.8rem;
+  margin-right: 40px;
+  margin: 30px 40px 0px 40px;
+  font-size: 18px;
+  white-space: pre-line;
+
+}
+
+.introduction {
+  width: 700px;
+  margin-right: 50px;
+}
+
+
+.about {
+  display: flex;
+  justify-content: start;
+  align-items: start;
+}
+
+.canvas {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.skillTitle {
+  font-weight: 600;
+  font-family: Catamaran, Arial, sans-serif;
+  font-size: 24px;
+  margin: 14px 0px;
+}
+
+.skills {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.skill {
+  border-radius: 5px;
+  padding: 5px 10px;
+  background-color: rgba(217, 217, 217, 0.999);
+  margin: 5px;
+  color: rgb(0, 0, 103);
+  font-weight: 600;
+}
