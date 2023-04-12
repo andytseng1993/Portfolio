@@ -9,7 +9,7 @@ const ScrollTriggerSection = ({ children }: PropsWithChildren) => {
 				initial={{ opacity: 0, transform: 'translateX(-200px)' }}
 				whileInView={{
 					opacity: 1,
-					transform: 'translateX(30px)',
+					transform: 'translateX(0px)',
 					transition: {
 						delay: 0.3,
 						duration: 0.3,

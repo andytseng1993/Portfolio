@@ -34,7 +34,8 @@ const NameCanvas = memo(function Canvas(props: any) {
 	let size = 2.5
 	let width = Math.max(1000 * ratio, 500)
 	let height = Math.max(600 * ratio, 300)
-	if (windowWidth < 414) {
+	// windowWidth includes 15px scroll
+	if (windowWidth < 525) {
 		width = Math.max(1000 * ratio, 370)
 		height = Math.max(600 * ratio, 220)
 		scale = Math.max(17 * ratio, 7.4)
@@ -152,8 +153,6 @@ const NameCanvas = memo(function Canvas(props: any) {
 			y: 0,
 		}
 	}
-
-	console.log(width, height)
 
 	return (
 		<canvas

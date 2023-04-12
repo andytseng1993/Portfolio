@@ -44,6 +44,14 @@
   right: 30px;
 }
 
+.content {
+  height: 99vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .sideBar {
   margin: 0;
   margin-top: 30px;
@@ -70,11 +78,27 @@
   border-left: 10px solid rgb(147, 137, 255);
   font-size: 24px;
   letter-spacing: 1px;
+  transition: transform 0.2s;
 }
 
 .link:hover {
   color: rgb(61, 152, 249);
   border-left: 10px solid rgb(105, 92, 255);
+  transform: translateY(-10px);
+}
+
+.icon {
+  color: rgb(194, 254, 254);
+  font-size: 35px;
+  cursor: pointer;
+  margin-bottom: 30px;
+  margin-right: 10px;
+  transition: transform 0.2s;
+
+}
+
+.icon:hover {
+  transform: translateY(-5px);
 }
 
 @media only screen and (max-width: 414px) {

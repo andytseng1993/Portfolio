@@ -3,8 +3,6 @@
 body {
   margin: 0;
   padding: 0;
-  width: 100vw;
-  height: 100vh;
   /* background-color: rgb(22, 10, 75); */
   background: linear-gradient(to right, #a7e2ff, rgb(29, 12, 107));
   overflow-x: hidden;

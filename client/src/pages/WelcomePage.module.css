@@ -82,7 +82,7 @@
   position: absolute;
   display: inline;
   transform: translate(-50%, -50%);
-  left: 93vw;
+  left: 90vw;
   top: 85vh;
   z-index: 10;
   user-select: none;
@@ -333,9 +333,9 @@
   }
 }
 
-@media only screen and (max-width: 414px) {
+@media only screen and (max-width: 510px) {
   .dash {
-    font-size: 55px;
+    font-size: 62px;
   }
 
   .name {
