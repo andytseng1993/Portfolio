@@ -1,8 +1,9 @@
 import { PrismaClient } from '@prisma/client'
 import express from 'express'
 import dotenv from 'dotenv'
-import auth from './routes/api/auth.mjs'
-import project from './routes/api/project.mjs'
+import auth from './routes/api/auth'
+import project from './routes/api/project'
+import path from 'path'
 
 dotenv.config()
 const port = process.env.PORT || 3001
@@ -11,6 +12,10 @@ app.use(express.json())
 
 app.use('/api/auth', auth)
 app.use('/api/projects', project)
+app.use(express.static(path.join(__dirname, './client/dist')))
+app.get('*', (req, res) => {
+	res.sendFile(path.join(__dirname, './client/dist/index.html'))
+})
 app.listen(port, () => console.log(`Sever started on port ${port}`))
 
 // const prisma = new PrismaClient()

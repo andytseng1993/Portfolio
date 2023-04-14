@@ -1,0 +1,118 @@
+.content {
+  min-height: 105vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+  font-family: Catamaran, Arial, sans-serif;
+}
+
+.title {
+  color: #ddd1ff;
+  height: auto;
+  font-size: 48px;
+  font-family: Catamaran, Arial, sans-serif;
+  font-weight: 700;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-shadow: 0 1px #000000, 0 2px #000000, 0 3px #000000, 0 4px #000000, 0 5px #000000, 0 6px #000000, 0 7px #000000, 0 8px #000000;
+  transform: translateY(-8px);
+  margin-bottom: 50px;
+}
+
+.title::after {
+  content: "";
+  display: block;
+  position: relative;
+  top: 0px;
+  width: 650px;
+  height: 1px;
+  padding-bottom: 3px;
+  margin-left: 20px;
+  background-color: #ddd1ff;
+  filter: drop-shadow(0px 10px 5px rgb(0, 0, 0));
+}
+
+.project {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  position: relative;
+  margin-bottom: 40px;
+}
+
+.projects {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.projectImg {
+  width: 400px;
+  height: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  padding: 10px;
+  background-color: #0000004a;
+}
+
+.image {
+  width: 380px;
+  height: auto;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.projectContent {
+  width: 30%;
+  margin-left: 30px;
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: column;
+}
+
+.projectTitle {
+  font-size: 36px;
+  font-weight: 600;
+  text-align: right;
+  margin-bottom: 15px;
+}
+
+.projectDate {
+  text-align: right;
+  font-size: 18px;
+  margin-bottom: 5px;
+}
+
+.projectContext {
+  line-height: 1.5rem;
+  width: 100%;
+  height: 100%;
+  padding: 20px 30px;
+  background-color: rgb(55, 38, 137);
+  border-radius: 10px;
+}
+
+.links {
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.skills {
+  display: flex;
+  flex-direction: row-reverse;
+  padding: 0;
+  margin: 0;
+}
+
+.skills li {
+  list-style-type: none;
+  color: rgba(255, 255, 255, 0.78);
+  margin-right: 5px;
+}
+
+.icon {
+  font-size: 25px;
+}

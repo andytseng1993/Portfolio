@@ -1,7 +1,7 @@
 import { PrismaClient } from '@prisma/client'
 import express from 'express'
 import dotenv from 'dotenv'
-import auth from '../../middleware/auth.mjs'
+import auth from '../../middleware/auth'
 dotenv.config()
 const router = express.Router()
 const prisma = new PrismaClient()
@@ -19,7 +19,7 @@ router.get('/', async (req, res) => {
 		const _projects = projects.map((project) => {
 			return {
 				...project,
-				image: project.image.toString('base64'),
+				image: project.image!.toString('base64'),
 			}
 		})
 		return res.status(200).json(_projects)
@@ -44,7 +44,7 @@ router.post('/', auth, async (req, res) => {
 		pinned,
 	} = req.body
 	try {
-		await prisma.note.create({
+		await prisma.project.create({
 			data: {
 				title,
 				content,

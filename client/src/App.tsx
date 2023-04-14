@@ -1,4 +1,4 @@
-import { Suspense, useState } from 'react'
+import { Suspense, useEffect, useState } from 'react'
 import './App.css'
 import 'bootstrap/dist/css/bootstrap.css'
 import LoadingPage from './loading/LoadingPage'
@@ -18,21 +18,21 @@ export const scroll = () => {
 }
 
 function App() {
-	const [isLoading, setIsLoading] = useState(false)
+	const [isLoading, setIsLoading] = useState(true)
 
-	// useEffect(() => {
-	// 	setIsLoading(true)
-	// 	lockScroll()
-	// 	setTimeout(() => {
-	// 		setIsLoading(false)
-	// 	}, 4000)
-	// 	setTimeout(() => {
-	// 		scroll()
-	// 	}, 6000)
-	// }, [])
+	useEffect(() => {
+		setIsLoading(true)
+		lockScroll()
+		setTimeout(() => {
+			setIsLoading(false)
+		}, 4000)
+		setTimeout(() => {
+			scroll()
+		}, 6000)
+	}, [])
 
 	return (
-		<div style={{ color: 'white', overflowX: 'hidden' }}>
+		<div style={{ color: 'white', overflowX: 'hidden', height: 'auto' }}>
 			<Suspense fallback={<div className="loading"></div>}>
 				<LoadingPage isLoading={isLoading} />
 				<NavBar>

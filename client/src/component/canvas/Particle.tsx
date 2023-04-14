@@ -138,15 +138,15 @@ export const connect = (
 			if (mouseDistance < radius) {
 				ctx.lineWidth = 1
 				ctx.beginPath()
-				ctx.strokeStyle = `rgba(255,${255 * opacity},${
-					255 * opacity
-				},${opacity})`
+				ctx.strokeStyle = `rgba(${125 * opacity},${
+					125 * opacity
+				},253,${opacity})`
 				ctx.moveTo(particleArray[a].x, particleArray[a].y)
 				ctx.lineTo(mouse.x, mouse.y)
 				ctx.stroke()
-				ctx.strokeStyle = `rgba(255,${255 * opacity},${
-					255 * opacity
-				},${opacityValue})`
+				ctx.strokeStyle = `rgba(${200 / opacity},${
+					200 * opacity
+				},255,${opacityValue})`
 			}
 			if (distance < particleDistance) {
 				ctx.lineWidth = 2

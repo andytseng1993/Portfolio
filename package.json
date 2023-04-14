@@ -2,7 +2,7 @@
   "name": "portfolio",
   "version": "1.0.0",
   "description": "Yuhsien's portfolio",
-  "main": "server.js",
+  "main": "server.mjs",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
@@ -16,15 +16,16 @@
   "devDependencies": {
     "@prisma/client": "^4.11.0",
     "@types/express": "^4.17.17",
-    "@types/node": "^18.15.10",
+    "@types/jsonwebtoken": "^9.0.1",
+    "@types/node": "^18.15.11",
     "bcryptjs": "^2.4.3",
     "concurrently": "^7.6.0",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "jsonwebtoken": "^9.0.0",
     "nodemon": "^2.0.22",
-    "prisma": "^4.11.0",
+    "prisma": "^4.12.0",
     "ts-node": "^10.9.1",
-    "typescript": "^5.0.2"
+    "typescript": "^5.0.4"
   }
 }

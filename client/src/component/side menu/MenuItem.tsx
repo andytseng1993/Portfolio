@@ -21,7 +21,7 @@ const MenuItem = ({ toggle = () => {} }) => {
 							smooth={true}
 							duration={200}
 							onClick={toggle}
-							className={classes.link}
+							className={`${classes.link}`}
 						>
 							{item}
 						</Link>
