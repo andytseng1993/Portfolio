@@ -1,62 +1,40 @@
-.content {
-  min-height: 105vh;
+.project {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: start;
-  font-family: Catamaran, Arial, sans-serif;
-}
-
-.title {
-  color: #ddd1ff;
-  height: auto;
-  font-size: 48px;
-  font-family: Catamaran, Arial, sans-serif;
-  font-weight: 700;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-shadow: 0 1px #000000, 0 2px #000000, 0 3px #000000, 0 4px #000000, 0 5px #000000, 0 6px #000000, 0 7px #000000, 0 8px #000000;
-  transform: translateY(-8px);
-  margin-bottom: 50px;
-}
-
-.title::after {
-  content: "";
-  display: block;
-  position: relative;
-  top: 0px;
-  width: 900px;
-  height: 1px;
-  padding-bottom: 3px;
-  margin-left: 20px;
-  background-color: #ddd1ff;
-}
-
-.project {
-  display: flex;
-  justify-content: center;
   align-items: stretch;
   position: relative;
-  margin-bottom: 40px;
   margin: 0px auto 40px;
   width: 75%;
   max-width: 1200px;
 }
 
-.projects {
-  margin: 0 auto;
+.projectBox {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .projectImg {
   width: 500px;
   height: 300px;
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
   border-radius: 10px;
   padding: 10px;
   background-color: #0000004a;
+}
+
+.projectImg:hover:after {
+  content: '';
+  position: absolute;
+  background-color: #0000004a;
+  width: 100%;
+  height: 100%;
 }
 
 .image {
@@ -67,7 +45,8 @@
 }
 
 .projectContent {
-  width: 30%;
+  width: 100%;
+  height: 100%;
   padding: 0 30px;
   display: flex;
   justify-content: space-evenly;
@@ -76,29 +55,32 @@
 }
 
 .projectTitle {
-  font-size: 36px;
+  font-size: 32px;
   font-weight: 600;
-  text-align: right;
-  margin-bottom: 15px;
+  text-align: left;
+  margin-bottom: 5px;
 }
 
 .projectDate {
   text-align: right;
   font-size: 18px;
   margin-bottom: 5px;
+  padding-left: 20px;
 }
 
 .projectContext {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  color: #ADBEDA;
+  background: transparent;
   line-height: 1.5rem;
-  width: 100%;
   height: 100%;
-  padding: 20px 10px;
-  /* background-color: rgb(55, 38, 137); */
-  /* border-radius: 10px; */
+  padding: 20px;
   border-top: rgba(137, 115, 247, 0.6) 1px solid;
   border-bottom: rgba(137, 115, 247, 0.6) 1px solid;
   margin-top: 5px;
-  color: #ADBEDA;
+  font-size: 18px;
 }
 
 .links {
@@ -111,6 +93,7 @@
   flex-direction: row-reverse;
   padding: 0;
   margin: 0;
+  font-size: 20px;
 }
 
 .skills li {
@@ -121,4 +104,6 @@
 
 .icon {
   font-size: 25px;
+  margin-right: 20px;
+  font-size: 26px;
 }
