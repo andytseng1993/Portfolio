@@ -1,24 +1,26 @@
 @import url('https://fonts.googleapis.com/css2?family=Catamaran:wght@500;600;700;800&display=swap');
 
-body {
+body,
+html {
+  width: 100vw;
   margin: 0;
   padding: 0;
-  /* background-color: rgb(87, 75, 253); */
-  /* background: linear-gradient(to right, #a7e2ff, rgb(29, 12, 107)); */
   overflow-x: hidden;
-  /* color: rgb(150, 142, 255); */
 }
 
-html {
-  scroll-behavior: smooth;
-}
-
-#root {
+.app {
   background: linear-gradient(to top, #223A65, #151930);
+  color: white;
+  width: 100vw;
+  height: 'auto';
   user-select: none;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
+}
+
+.loading {
+  background-color: rgb(29, 12, 107);
 }
 
 a {

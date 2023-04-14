@@ -26,7 +26,7 @@
   display: block;
   position: relative;
   top: 0px;
-  width: 900px;
+  width: 650px;
   height: 1px;
   padding-bottom: 3px;
   margin-left: 20px;
@@ -53,9 +53,7 @@
   display: flex;
   justify-content: start;
   align-items: start;
-  margin-top: 20px;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 20px auto;
 }
 
 .canvas {

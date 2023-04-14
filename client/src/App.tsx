@@ -1,11 +1,14 @@
 import { Suspense, useEffect, useState } from 'react'
-import './App.css'
 import 'bootstrap/dist/css/bootstrap.css'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import LoadingPage from './loading/LoadingPage'
 import WelcomePage from './pages/WelcomePage'
 import AboutPage from './pages/AboutPage'
 import ProjectPage from './pages/ProjectPage'
 import NavBar from './pages/NavBar'
+import Upload from './pages/Upload'
+import { UserAuthContextProvider } from './context/UserAuth'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
 export const lockScroll = () => {
 	const scrollBarCompensation = window.innerWidth - document.body.offsetWidth
@@ -18,6 +21,7 @@ export const scroll = () => {
 }
 
 function App() {
+	const queryClient = new QueryClient()
 	const [isLoading, setIsLoading] = useState(false)
 
 	// useEffect(() => {
@@ -31,17 +35,35 @@ function App() {
 	// 	}, 6000)
 	// }, [])
 
+	const router = createBrowserRouter([
+		{
+			path: '/',
+			element: (
+				<div className="app">
+					<Suspense fallback={<div className="loading"></div>}>
+						<LoadingPage isLoading={isLoading} />
+						<NavBar>
+							<WelcomePage />
+							<AboutPage />
+							<ProjectPage />
+						</NavBar>
+					</Suspense>
+				</div>
+			),
+		},
+		{
+			path: 'update',
+			element: (
+				<UserAuthContextProvider>
+					<Upload />
+				</UserAuthContextProvider>
+			),
+		},
+	])
 	return (
-		<div style={{ color: 'white', overflowX: 'hidden', height: 'auto' }}>
-			<Suspense fallback={<div className="loading"></div>}>
-				<LoadingPage isLoading={isLoading} />
-				<NavBar>
-					<WelcomePage />
-					<AboutPage />
-					<ProjectPage />
-				</NavBar>
-			</Suspense>
-		</div>
+		<QueryClientProvider client={queryClient}>
+			<RouterProvider router={router} />
+		</QueryClientProvider>
 	)
 }
 

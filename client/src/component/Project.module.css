@@ -1,6 +1,5 @@
 .project {
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: stretch;
   position: relative;
