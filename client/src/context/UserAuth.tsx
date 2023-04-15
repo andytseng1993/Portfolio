@@ -6,33 +6,43 @@ interface CurrentUserAuth {
 	currentUser: UserName
 }
 interface UserName {
-	userName: string | null
-	role: string | null
+	email: string | null
+}
+interface ConfigType {
+	headers: {
+		'Content-type': string
+		'x-auth-token'?: string
+	}
 }
 
 const UserAuthContext = createContext<CurrentUserAuth>({} as CurrentUserAuth)
 export const UserAuthContextProvider = ({ children }: PropsWithChildren) => {
 	const [currentUser, setCurrentUser] = useState<UserName>({
-		userName: null,
-		role: null,
+		email: null,
 	})
 	const { data } = useQuery({
 		queryFn: async () => {
-			const { data } = await axios.get('/api/auth/user', {
-				withCredentials: true,
+			const token = localStorage.getItem('token')
+			const config = {
 				headers: {
-					'content-Type': 'application/json',
+					'Content-type': 'application/json',
 				},
-			})
+			} as ConfigType
+			if (token) {
+				config.headers['x-auth-token'] = token
+			}
+			const { data } = await axios.get('/api/auth/user', config)
 			return data
 		},
 		retry: false,
 		queryKey: ['user'],
 		onSuccess: (data) => {
+			localStorage.setItem('token', data.email)
 			setCurrentUser(data)
 		},
 		onError: (err) => {
-			setCurrentUser({ userName: '', role: '' })
+			localStorage.removeItem('token')
+			setCurrentUser({ email: '' })
 		},
 	})
 

@@ -9,16 +9,12 @@ import Logout from './auth/Logout'
 
 interface AppNavbarProps extends PropsWithChildren {
 	currentUser: {
-		userName: string | null
-		role: string | null
+		email: string | null
 	}
 }
 
 const UploadNav = ({ children, currentUser }: AppNavbarProps) => {
-	const [show, setShow] = useState({
-		showLoginModal: false,
-		showRegisterModal: false,
-	})
+	const [show, setShow] = useState(false)
 	return (
 		<>
 			<Navbar bg="dark" expand="lg" variant="dark">
@@ -30,8 +26,7 @@ const UploadNav = ({ children, currentUser }: AppNavbarProps) => {
 					</Navbar.Brand>
 				</Container>
 				<Nav className="text-light">
-					{currentUser.userName === null ? null : currentUser.userName ===
-					  '' ? (
+					{currentUser.email === '' ? (
 						<>
 							<Nav.Item className="me-4">
 								<LoginModal show={show} setShow={setShow} />
@@ -39,15 +34,6 @@ const UploadNav = ({ children, currentUser }: AppNavbarProps) => {
 						</>
 					) : (
 						<>
-							{currentUser.role === 'ADMIN' ? (
-								<Nav.Item className="p-2 mx-2 text-light">
-									Welcome <strong>{currentUser.userName} : ADMIN</strong>
-								</Nav.Item>
-							) : (
-								<Nav.Item className="p-2 mx-2 text-light">
-									Welcome <strong>{currentUser.userName}</strong>
-								</Nav.Item>
-							)}
 							<Nav.Item>
 								<Logout />
 							</Nav.Item>

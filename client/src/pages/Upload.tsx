@@ -3,6 +3,8 @@ import { useUserAuth } from '../context/UserAuth'
 
 const Upload = () => {
 	const { currentUser } = useUserAuth()
+	console.log(currentUser)
+
 	return (
 		<>
 			<UploadNav currentUser={currentUser}>

@@ -22,7 +22,7 @@ router.get('/user', async (req, res) => {
 		const token = req.header('x-auth-token')
 		if (!token)
 			return res.status(401).json({ msg: 'No token, authorization denied' })
-		const decode = jwt.verify(req.cookies._session_Id, privateKey) as JwtPayload
+		const decode = jwt.verify(token, privateKey) as JwtPayload
 		const user = await prisma.user.findUnique({
 			where: {
 				id: decode.id,
@@ -68,7 +68,6 @@ router.post('/login', async (req, res) => {
 					return res.status(200).json({
 						token,
 						user: {
-							id: user.id,
 							email: user.email,
 						},
 					})

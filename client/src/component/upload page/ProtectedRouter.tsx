@@ -1,11 +1,11 @@
 import { PropsWithChildren, useEffect } from 'react'
 import { Navigate, Outlet, useLocation } from 'react-router-dom'
-import { useUserAuth } from '../context/UserAuth'
+import { useUserAuth } from '../../context/UserAuth'
 
 const ProtectedRouter = ({ children }: PropsWithChildren) => {
 	const { currentUser } = useUserAuth()
 
-	if (currentUser.userName === '') {
+	if (currentUser.email === '') {
 		return <Navigate to={'.'}></Navigate>
 	}
 	return <>{children ? children : <Outlet />}</>

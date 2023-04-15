@@ -11,19 +11,14 @@ import {
 	Row,
 	Stack,
 } from 'react-bootstrap'
-import { useUserToasts } from '../../../context/UserToasts'
 
 interface User {
 	email: string
 	password: string
 }
 interface LoginProps {
-	show: Show
-	setShow: Dispatch<SetStateAction<Show>>
-}
-interface Show {
-	showLoginModal: boolean
-	showRegisterModal: boolean
+	show: boolean
+	setShow: Dispatch<SetStateAction<boolean>>
 }
 
 const LoginModal = ({ show, setShow }: LoginProps) => {
@@ -31,11 +26,10 @@ const LoginModal = ({ show, setShow }: LoginProps) => {
 	const passwordRef = useRef<HTMLInputElement>(null)
 	const [error, setError] = useState('')
 	const queryClient = useQueryClient()
-	const { setToastShow, setToastContent } = useUserToasts()
 
 	const mutation = useMutation({
 		mutationFn: async (userData: User) => {
-			const { data } = await axios.post('/api/users/login', userData)
+			const { data } = await axios.post('/api/auth/login', userData)
 			return data
 		},
 		onError: (err) => {
@@ -43,21 +37,15 @@ const LoginModal = ({ show, setShow }: LoginProps) => {
 				setError(err.response?.data)
 			}
 		},
-		onSuccess: ({ user }) => {
+		onSuccess: (data) => {
+			console.log(data)
+			localStorage.setItem('token', data.token)
 			queryClient.invalidateQueries(['user'])
-			setToastShow(true)
-			setToastContent({
-				header: `Welcome Back ${user.userName}`,
-				body: 'Success Log In!',
-			})
 			toggle()
 		},
 	})
 	const toggle = () => {
-		setShow({
-			showLoginModal: false,
-			showRegisterModal: false,
-		})
+		setShow(false)
 		setError('')
 		emailRef.current!.value = ''
 		passwordRef.current!.value = ''
@@ -74,32 +62,11 @@ const LoginModal = ({ show, setShow }: LoginProps) => {
 		}
 		mutation.mutate(userData)
 	}
-	const showRegister = () => {
-		toggle()
-		setShow({
-			showLoginModal: false,
-			showRegisterModal: true,
-		})
-	}
 
 	return (
 		<>
-			<Nav.Link
-				onClick={() =>
-					setShow({
-						showLoginModal: true,
-						showRegisterModal: false,
-					})
-				}
-			>
-				Log In
-			</Nav.Link>
-			<Modal
-				show={show.showLoginModal}
-				onHide={toggle}
-				centered
-				backdrop="static"
-			>
+			<Nav.Link onClick={() => setShow(true)}>Log In</Nav.Link>
+			<Modal show={show} onHide={toggle} centered backdrop="static">
 				<Modal.Header closeButton>
 					<Modal.Title>Log In</Modal.Title>
 				</Modal.Header>
@@ -146,14 +113,6 @@ const LoginModal = ({ show, setShow }: LoginProps) => {
 						</Stack>
 					</Form>
 				</Modal.Body>
-				<Modal.Footer className="justify-content-center align-items-center">
-					<small>Don’t have an account?</small>
-					<p>
-						<a href="#" onClick={showRegister}>
-							Sign Up
-						</a>
-					</p>
-				</Modal.Footer>
 			</Modal>
 		</>
 	)
