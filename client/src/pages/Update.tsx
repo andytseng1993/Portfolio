@@ -1,17 +1,16 @@
+import { Outlet } from 'react-router-dom'
 import UploadNav from '../component/upload page/UploadNav'
 import { useUserAuth } from '../context/UserAuth'
 
-const Upload = () => {
+const Update = () => {
 	const { currentUser } = useUserAuth()
 	console.log(currentUser)
 
 	return (
-		<>
-			<UploadNav currentUser={currentUser}>
-				<h1>123</h1>
-			</UploadNav>
-		</>
+		<UploadNav currentUser={currentUser}>
+			<Outlet />
+		</UploadNav>
 	)
 }
 
-export default Upload
+export default Update

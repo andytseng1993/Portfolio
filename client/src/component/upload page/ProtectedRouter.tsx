@@ -6,7 +6,7 @@ const ProtectedRouter = ({ children }: PropsWithChildren) => {
 	const { currentUser } = useUserAuth()
 
 	if (currentUser.email === '') {
-		return <Navigate to={'.'}></Navigate>
+		return <h1>Please login!</h1>
 	}
 	return <>{children ? children : <Outlet />}</>
 }

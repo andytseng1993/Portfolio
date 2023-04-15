@@ -23,3 +23,18 @@
 # Client
 
 1.  [react-scroll]https://www.npmjs.com/package/react-scroll
+
+# Typescript
+
+1. If your image property contains ...
+   Image used as <img> element
+
+- `image?: HTMLImageElement`
+  URL to image.
+- `image?: String`
+  Image as file from <input> element
+- `image?: File`
+
+2. useRef is generic if you use it with TypeScript, so you can define the referenced element type like const ref = useRef<Type>()
+
+- `const accountRef = useRef<HTMLInputElement>()`

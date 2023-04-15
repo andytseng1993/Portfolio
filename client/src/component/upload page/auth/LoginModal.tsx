@@ -1,5 +1,6 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import axios from 'axios'
+import { stringify } from 'querystring'
 import { Dispatch, FormEvent, SetStateAction, useRef, useState } from 'react'
 import {
 	Alert,
@@ -38,8 +39,7 @@ const LoginModal = ({ show, setShow }: LoginProps) => {
 			}
 		},
 		onSuccess: (data) => {
-			console.log(data)
-			localStorage.setItem('token', data.token)
+			localStorage.setItem('token', JSON.stringify(data.token))
 			queryClient.invalidateQueries(['user'])
 			toggle()
 		},

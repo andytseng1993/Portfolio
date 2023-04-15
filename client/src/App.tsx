@@ -1,14 +1,16 @@
 import { Suspense, useEffect, useState } from 'react'
 import 'bootstrap/dist/css/bootstrap.css'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { UserAuthContextProvider } from './context/UserAuth'
 import LoadingPage from './loading/LoadingPage'
 import WelcomePage from './pages/WelcomePage'
 import AboutPage from './pages/AboutPage'
 import ProjectPage from './pages/ProjectPage'
 import NavBar from './pages/NavBar'
-import Upload from './pages/Upload'
-import { UserAuthContextProvider } from './context/UserAuth'
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import UpdatePage from './pages/UpdatePage'
+import Update from './pages/Update'
+import ProtectedRouter from './component/upload page/ProtectedRouter'
 
 export const lockScroll = () => {
 	const scrollBarCompensation = window.innerWidth - document.body.offsetWidth
@@ -55,9 +57,19 @@ function App() {
 			path: 'update',
 			element: (
 				<UserAuthContextProvider>
-					<Upload />
+					<Update />
 				</UserAuthContextProvider>
 			),
+			children: [
+				{
+					index: true,
+					element: (
+						<ProtectedRouter>
+							<UpdatePage />
+						</ProtectedRouter>
+					),
+				},
+			],
 		},
 	])
 	return (

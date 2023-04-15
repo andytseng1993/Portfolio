@@ -22,7 +22,7 @@ export const UserAuthContextProvider = ({ children }: PropsWithChildren) => {
 	})
 	const { data } = useQuery({
 		queryFn: async () => {
-			const token = localStorage.getItem('token')
+			const token = JSON.parse(localStorage.getItem('token')!)
 			const config = {
 				headers: {
 					'Content-type': 'application/json',
@@ -37,7 +37,7 @@ export const UserAuthContextProvider = ({ children }: PropsWithChildren) => {
 		retry: false,
 		queryKey: ['user'],
 		onSuccess: (data) => {
-			localStorage.setItem('token', data.email)
+			console.log(data)
 			setCurrentUser(data)
 		},
 		onError: (err) => {
