@@ -8,9 +8,10 @@ import WelcomePage from './pages/WelcomePage'
 import AboutPage from './pages/AboutPage'
 import ProjectPage from './pages/ProjectPage'
 import NavBar from './pages/NavBar'
-import UpdatePage from './pages/UpdatePage'
+import UpdatePage from './pages/UpdateIndex'
 import Update from './pages/Update'
 import ProtectedRouter from './component/upload page/ProtectedRouter'
+import UpdateIndex from './pages/UpdateIndex'
 
 export const lockScroll = () => {
 	const scrollBarCompensation = window.innerWidth - document.body.offsetWidth
@@ -65,7 +66,7 @@ function App() {
 					index: true,
 					element: (
 						<ProtectedRouter>
-							<UpdatePage />
+							<UpdateIndex />
 						</ProtectedRouter>
 					),
 				},

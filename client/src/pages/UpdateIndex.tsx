@@ -1,15 +1,16 @@
 import { useRef, useState } from 'react'
 import { Button, Col, Form, Image, Row, Stack } from 'react-bootstrap'
 import preview from '../assets/preview.png'
+import ProjecctForm from '../component/upload page/ProjecctForm'
 
 interface PhotoType {
 	name: string | null
 }
 
-const UpdatePage = () => {
+const UpdateIndex = () => {
 	const hiddenFileInput = useRef<HTMLInputElement>(null)
 	const imageRef = useRef<HTMLImageElement>(null)
-	const [photoSrc, setPhotoSrc] = useState<ArrayBuffer | string>(preview)
+	const [photoSrc, setPhotoSrc] = useState<string>(preview)
 
 	const handleCancelImage = () => {
 		hiddenFileInput.current!.value = ''
@@ -18,7 +19,9 @@ const UpdatePage = () => {
 	const handleLoadImage = () => {
 		hiddenFileInput.current!.click()
 	}
-	const handleLoadImageChange = (event: Event) => {
+	const handleLoadImageChange = (
+		event: React.ChangeEvent<HTMLInputElement>
+	) => {
 		const target = event.target as HTMLInputElement
 		handleImage(target.files![0])
 	}
@@ -27,7 +30,7 @@ const UpdatePage = () => {
 		let load = false
 		reader.readAsDataURL(file)
 		reader.onload = () => {
-			setPhotoSrc(reader.result!)
+			setPhotoSrc(reader.result! as string)
 			load = true
 		}
 		imageRef.current!.onload = () => {
@@ -40,8 +43,8 @@ const UpdatePage = () => {
 
 	return (
 		<>
-			<Row>
-				<Col className="px-4 w-50">
+			<Row className="p-3">
+				<Col className="px-4 mt-5">
 					<Stack gap={2}>
 						<input
 							ref={hiddenFileInput}
@@ -50,8 +53,12 @@ const UpdatePage = () => {
 							type="file"
 							accept="image/png, image/jpeg, image/gif"
 						/>
-						<Stack direction="horizontal" gap={4}>
-							<Button className="w-75" onClick={handleLoadImage}>
+						<Stack
+							direction="horizontal"
+							className="d-flex justify-content-center"
+							gap={4}
+						>
+							<Button className="w-50" onClick={handleLoadImage}>
 								Select Image
 							</Button>
 							<Button
@@ -75,9 +82,12 @@ const UpdatePage = () => {
 						></Image>
 					</Stack>
 				</Col>
+				<Col xs={6} className={'p-4'}>
+					<ProjecctForm />
+				</Col>
 			</Row>
 		</>
 	)
 }
 
-export default UpdatePage
+export default UpdateIndex
