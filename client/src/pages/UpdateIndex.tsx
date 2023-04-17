@@ -10,7 +10,7 @@ interface PhotoType {
 const UpdateIndex = () => {
 	const hiddenFileInput = useRef<HTMLInputElement>(null)
 	const imageRef = useRef<HTMLImageElement>(null)
-	const [photoSrc, setPhotoSrc] = useState<string>(preview)
+	const [photoSrc, setPhotoSrc] = useState(preview)
 
 	const handleCancelImage = () => {
 		hiddenFileInput.current!.value = ''
@@ -83,7 +83,7 @@ const UpdateIndex = () => {
 					</Stack>
 				</Col>
 				<Col xs={6} className={'p-4'}>
-					<ProjecctForm />
+					<ProjecctForm photoSrc={photoSrc} setPhotoSrc={setPhotoSrc} />
 				</Col>
 			</Row>
 		</>

@@ -24,22 +24,23 @@ const UploadNav = ({ children, currentUser }: AppNavbarProps) => {
 							Home
 						</Link>
 					</Navbar.Brand>
+
+					<Nav className="text-light">
+						{currentUser.email === '' ? (
+							<>
+								<Nav.Item className="me-4">
+									<LoginModal show={show} setShow={setShow} />
+								</Nav.Item>
+							</>
+						) : (
+							<>
+								<Nav.Item>
+									<Logout />
+								</Nav.Item>
+							</>
+						)}
+					</Nav>
 				</Container>
-				<Nav className="text-light">
-					{currentUser.email === '' ? (
-						<>
-							<Nav.Item className="me-4">
-								<LoginModal show={show} setShow={setShow} />
-							</Nav.Item>
-						</>
-					) : (
-						<>
-							<Nav.Item>
-								<Logout />
-							</Nav.Item>
-						</>
-					)}
-				</Nav>
 			</Navbar>
 			{children}
 		</>

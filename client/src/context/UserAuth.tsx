@@ -14,6 +14,18 @@ interface ConfigType {
 		'x-auth-token'?: string
 	}
 }
+export const tokenConfig = () => {
+	const token = JSON.parse(localStorage.getItem('token')!)
+	const config = {
+		headers: {
+			'Content-type': 'application/json',
+		},
+	} as ConfigType
+	if (token) {
+		config.headers['x-auth-token'] = token
+	}
+	return config
+}
 
 const UserAuthContext = createContext<CurrentUserAuth>({} as CurrentUserAuth)
 export const UserAuthContextProvider = ({ children }: PropsWithChildren) => {
@@ -22,16 +34,7 @@ export const UserAuthContextProvider = ({ children }: PropsWithChildren) => {
 	})
 	const { data } = useQuery({
 		queryFn: async () => {
-			const token = JSON.parse(localStorage.getItem('token')!)
-			const config = {
-				headers: {
-					'Content-type': 'application/json',
-				},
-			} as ConfigType
-			if (token) {
-				config.headers['x-auth-token'] = token
-			}
-			const { data } = await axios.get('/api/auth/user', config)
+			const { data } = await axios.get('/api/auth/user', tokenConfig())
 			return data
 		},
 		retry: false,

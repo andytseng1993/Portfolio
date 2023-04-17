@@ -1,30 +1,83 @@
-import { Button, Col, Form, Row } from 'react-bootstrap'
+import { Button, Form } from 'react-bootstrap'
 import FormField from './FormField'
-import { useRef, useState } from 'react'
+import { Dispatch, SetStateAction, useRef, useState } from 'react'
 import SkillsSelect from './SkillsSelect'
-
+import preview from '../../assets/preview.png'
+import { useMutation } from '@tanstack/react-query'
+import axios from 'axios'
+import { tokenConfig } from '../../context/UserAuth'
 interface Value {
 	label: string
 	value: string
 }
+interface Props {
+	photoSrc: string
+	setPhotoSrc: Dispatch<SetStateAction<string>>
+}
 
-const ProjecctForm = () => {
-	const [value, setValue] = useState<Value[] | null>(null)
+interface ProjectType {
+	title: string
+	content: string
+	createdAt: Date
+	tech: string[]
+	githubSrc: string
+	websiteSrc: string
+	pinned: boolean
+	image: string
+}
+
+const ProjecctForm = ({ photoSrc, setPhotoSrc }: Props) => {
+	const [value, setValue] = useState<Value[]>([])
 	const [pinned, setPinned] = useState(true)
 	const titleRef = useRef<HTMLInputElement>(null)
 	const contentRef = useRef<HTMLInputElement>(null)
 	const createAtRef = useRef<HTMLInputElement>(null)
 	const webRef = useRef<HTMLInputElement>(null)
 	const githubRef = useRef<HTMLInputElement>(null)
+	const [error, setError] = useState<string>('')
 
 	const skills = () => {
-		const result = value!.map((skill) => skill.value)
+		if (value == null) return []
+		const result = value.map((skill) => skill.value)
 		return result
 	}
-	console.log(skills())
+	const mutation = useMutation({
+		mutationFn: (projectDetail: ProjectType) => {
+			return axios.post('/api/projects', projectDetail, tokenConfig())
+		},
+		onSuccess: () => {
+			titleRef.current!.value = ''
+			contentRef.current!.value = ''
+			createAtRef.current!.value = ''
+			githubRef.current!.value = ''
+			setValue([])
+			githubRef.current!.value = ''
+			webRef.current!.value = ''
+			setPinned(true)
+			setPhotoSrc(preview)
+			setError('')
+		},
+		onError: () => {
+			setError('Sonething wrong in Updating!')
+		},
+	})
 
-	const saveImage = () => {
-		console.log(Date.parse(createAtRef.current!.value))
+	const uploadProject = () => {
+		if (photoSrc === preview) return setError('Please upload image')
+		if (titleRef.current!.value === '' || contentRef.current!.value === '')
+			return setError('Please enter all fields.')
+
+		const projectDetail = {
+			title: titleRef.current!.value,
+			content: contentRef.current!.value,
+			createdAt: new Date(createAtRef.current!.value),
+			tech: skills(),
+			githubSrc: githubRef.current!.value,
+			websiteSrc: webRef.current!.value,
+			pinned: pinned,
+			image: photoSrc,
+		}
+		mutation.mutate(projectDetail)
 	}
 
 	return (
@@ -83,9 +136,14 @@ const ProjecctForm = () => {
 					onChange={() => setPinned(!pinned)}
 				/>
 			</Form.Group>
-			<div className="d-flex justify-content-end">
-				<Button className="w-50" onClick={saveImage}>
-					Download Image
+			<div className="d-flex justify-content-end align-items-center">
+				{error ? (
+					<div style={{ color: 'red', marginRight: 30, fontSize: 20 }}>
+						{error}
+					</div>
+				) : null}
+				<Button className="w-50" onClick={uploadProject}>
+					Upload Project
 				</Button>
 			</div>
 		</>

@@ -5,7 +5,7 @@ import { useUserAuth } from '../../context/UserAuth'
 const ProtectedRouter = ({ children }: PropsWithChildren) => {
 	const { currentUser } = useUserAuth()
 
-	if (currentUser.email === '') {
+	if (currentUser.email === '' || currentUser.email === null) {
 		return <h1>Please login!</h1>
 	}
 	return <>{children ? children : <Outlet />}</>

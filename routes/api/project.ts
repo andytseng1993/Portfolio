@@ -2,6 +2,7 @@ import { PrismaClient } from '@prisma/client'
 import express from 'express'
 import dotenv from 'dotenv'
 import auth from '../../middleware/auth'
+import { Buffer } from 'buffer'
 dotenv.config()
 const router = express.Router()
 const prisma = new PrismaClient()
@@ -11,11 +12,7 @@ const prisma = new PrismaClient()
 //@access Public
 router.get('/', async (req, res) => {
 	try {
-		const projects = await prisma.project.findMany({
-			orderBy: {
-				order: 'desc',
-			},
-		})
+		const projects = await prisma.project.findMany()
 		const _projects = projects.map((project) => {
 			return {
 				...project,
@@ -40,7 +37,6 @@ router.post('/', auth, async (req, res) => {
 		githubSrc,
 		websiteSrc,
 		image,
-		order,
 		pinned,
 	} = req.body
 	try {
@@ -48,18 +44,17 @@ router.post('/', auth, async (req, res) => {
 			data: {
 				title,
 				content,
-				createdAt,
+				// createdAt,
 				tech,
 				githubSrc,
 				websiteSrc,
-				order,
 				pinned,
 				image: Buffer.from(image, 'base64'),
 			},
 		})
 		return res.status(201).json({ success: true })
 	} catch (error) {
-		res.status(404).json({ success: false })
+		res.status(404).json({ error })
 	}
 })
 

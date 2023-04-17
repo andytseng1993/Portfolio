@@ -8,7 +8,7 @@ import path from 'path'
 dotenv.config()
 const port = process.env.PORT || 3001
 const app = express()
-app.use(express.json())
+app.use(express.json({ limit: '5mb' }))
 
 app.use('/api/auth', auth)
 app.use('/api/projects', project)

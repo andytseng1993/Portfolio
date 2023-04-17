@@ -2,7 +2,7 @@ import { Dispatch, ReactPropTypes, SetStateAction, useState } from 'react'
 import CreatableSelect from 'react-select/creatable'
 interface Props {
 	value: null | Value[]
-	setValue: React.Dispatch<React.SetStateAction<Value[] | null>>
+	setValue: React.Dispatch<React.SetStateAction<Value[]>>
 }
 interface Value {
 	label: string
@@ -13,7 +13,7 @@ const SkillsSelect = ({ value, setValue }: Props) => {
 	const [options, setOptions] = useState<Value[]>([])
 	const createOption = (label: string) => ({
 		label,
-		value: label.toLowerCase().replace(/\W/g, ''),
+		value: label,
 	})
 	const handleCreate = (inputValue: string) => {
 		const newOption = createOption(inputValue)
