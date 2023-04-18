@@ -40,11 +40,11 @@ router.post('/', auth, async (req, res) => {
 		pinned,
 	} = req.body
 	try {
-		await prisma.project.create({
+		const project = await prisma.project.create({
 			data: {
 				title,
 				content,
-				// createdAt,
+				createdAt,
 				tech,
 				githubSrc,
 				websiteSrc,
@@ -52,7 +52,7 @@ router.post('/', auth, async (req, res) => {
 				image: Buffer.from(image, 'base64'),
 			},
 		})
-		return res.status(201).json({ success: true })
+		return res.status(200).json(project)
 	} catch (error) {
 		res.status(404).json({ error })
 	}

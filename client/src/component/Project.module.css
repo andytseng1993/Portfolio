@@ -4,7 +4,7 @@
   align-items: stretch;
   position: relative;
   margin: 0px auto 40px;
-  width: 75%;
+  padding: 0 15px;
   max-width: 1200px;
 }
 

@@ -2,21 +2,22 @@
 
 body,
 html {
-  width: 100vw;
+  width: 100%;
   margin: 0;
   padding: 0;
-  overflow-x: hidden;
+
 }
 
 .app {
   background: linear-gradient(to top, #223A65, #151930);
   color: white;
-  width: 100vw;
+  width: 100%;
   height: 'auto';
   user-select: none;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
+  overflow-x: auto;
 }
 
 .loading {

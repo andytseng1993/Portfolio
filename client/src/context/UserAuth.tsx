@@ -40,7 +40,6 @@ export const UserAuthContextProvider = ({ children }: PropsWithChildren) => {
 		retry: false,
 		queryKey: ['user'],
 		onSuccess: (data) => {
-			console.log(data)
 			setCurrentUser(data)
 		},
 		onError: (err) => {

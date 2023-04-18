@@ -25,6 +25,9 @@ interface ProjectType {
 	pinned: boolean
 	image: string
 }
+interface projectOderType {
+	projectOrder: string[]
+}
 
 const ProjecctForm = ({ photoSrc, setPhotoSrc }: Props) => {
 	const [value, setValue] = useState<Value[]>([])
@@ -45,23 +48,35 @@ const ProjecctForm = ({ photoSrc, setPhotoSrc }: Props) => {
 		mutationFn: (projectDetail: ProjectType) => {
 			return axios.post('/api/projects', projectDetail, tokenConfig())
 		},
-		onSuccess: () => {
-			titleRef.current!.value = ''
-			contentRef.current!.value = ''
-			createAtRef.current!.value = ''
-			githubRef.current!.value = ''
-			setValue([])
-			githubRef.current!.value = ''
-			webRef.current!.value = ''
-			setPinned(true)
-			setPhotoSrc(preview)
-			setError('')
+		onSuccess: ({ data }) => {
+			// titleRef.current!.value = ''
+			// contentRef.current!.value = ''
+			// createAtRef.current!.value = ''
+			// githubRef.current!.value = ''
+			// setValue([])
+			// githubRef.current!.value = ''
+			// webRef.current!.value = ''
+			// setPinned(true)
+			// setPhotoSrc(preview)
+			// setError('')
+			if (pinned) {
+				const id = JSON.stringify(data.id)
+				const newOrder = { projectOrder: [id] }
+				mutationOrder.mutate(newOrder)
+			}
 		},
 		onError: () => {
 			setError('Sonething wrong in Updating!')
 		},
 	})
-
+	const mutationOrder = useMutation({
+		mutationFn: (projectOrder: projectOderType) => {
+			return axios.put('/api/projectorder', projectOrder)
+		},
+		onError: () => {
+			setError('Sonething wrong in Update Order!')
+		},
+	})
 	const uploadProject = () => {
 		if (photoSrc === preview) return setError('Please upload image')
 		if (titleRef.current!.value === '' || contentRef.current!.value === '')

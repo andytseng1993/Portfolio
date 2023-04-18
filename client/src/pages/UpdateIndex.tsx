@@ -43,7 +43,7 @@ const UpdateIndex = () => {
 
 	return (
 		<>
-			<Row className="p-3">
+			<Row className="w-100 p-3">
 				<Col className="px-4 mt-5">
 					<Stack gap={2}>
 						<input
