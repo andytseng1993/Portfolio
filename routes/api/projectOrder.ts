@@ -1,5 +1,6 @@
 import { PrismaClient } from '@prisma/client'
 import express from 'express'
+import auth from '../../middleware/auth'
 
 const router = express.Router()
 const prisma = new PrismaClient()
@@ -9,7 +10,9 @@ const prisma = new PrismaClient()
 //@access Public
 router.get('/', async (req, res) => {
   try {
-    const projectOrder = await prisma.projectOrder.findMany()
+    const projectOrder = await prisma.projectOrder.findMany({
+      take: 1,
+    })
     return res.status(200).json(projectOrder)
   } catch (error) {
     return res.status(404).json({ error })
@@ -19,7 +22,7 @@ router.get('/', async (req, res) => {
 //@route POST api/projectorder
 //@desc return projectorder
 //@access Public
-router.post('/', async (req, res) => {
+router.post('/', auth, async (req, res) => {
   const { projectOrder } = req.body
   try {
     const order = await prisma.projectOrder.create({
@@ -36,12 +39,12 @@ router.post('/', async (req, res) => {
 // @route PUT api/projectorder
 // @desc return projectorder
 // @access Public
-router.put('/', async (req, res) => {
+router.put('/', auth, async (req, res) => {
   const { projectOrder, id } = req.body
   try {
     const Order = await prisma.projectOrder.update({
       where: {
-        id
+        id: id
       },
       data: {
         projectOrder
@@ -58,11 +61,11 @@ router.put('/', async (req, res) => {
 //@desc return projectorder
 //@access Public
 router.put('/push', async (req, res) => {
-  const { projectOrder } = req.body
+  const { projectOrder, id } = req.body
   try {
     const order = await prisma.projectOrder.update({
       where: {
-        id: '643d52be0267cc97bfcf75f3'
+        id: id
       },
       data: {
         projectOrder: {

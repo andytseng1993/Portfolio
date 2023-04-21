@@ -12,6 +12,7 @@ import UpdatePage from './pages/UpdateIndex'
 import Update from './pages/Update'
 import ProtectedRouter from './component/upload page/ProtectedRouter'
 import UpdateIndex from './pages/UpdateIndex'
+import ReorderPage from './pages/ReorderPage'
 
 export const lockScroll = () => {
 	const scrollBarCompensation = window.innerWidth - document.body.offsetWidth
@@ -67,6 +68,14 @@ function App() {
 					element: (
 						<ProtectedRouter>
 							<UpdateIndex />
+						</ProtectedRouter>
+					),
+				},
+				{
+					path: 'reorder',
+					element: (
+						<ProtectedRouter>
+							<ReorderPage />
 						</ProtectedRouter>
 					),
 				},

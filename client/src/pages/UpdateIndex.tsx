@@ -33,13 +33,7 @@ const UpdateIndex = () => {
 			setPhotoSrc(reader.result! as string)
 			load = true
 		}
-		imageRef.current!.onload = () => {
-			if (!hiddenFileInput.current!.value) return
-			let width = imageRef.current!.naturalWidth
-			let height = imageRef.current!.naturalHeight
-		}
 	}
-	const handleSaveImage = () => {}
 
 	return (
 		<>

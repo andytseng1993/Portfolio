@@ -3,9 +3,15 @@ import FormField from './FormField'
 import { Dispatch, SetStateAction, useRef, useState } from 'react'
 import SkillsSelect from './SkillsSelect'
 import preview from '../../assets/preview.png'
-import { useMutation } from '@tanstack/react-query'
+import {
+	QueryClient,
+	UseQueryResult,
+	useMutation,
+	useQueryClient,
+} from '@tanstack/react-query'
 import axios from 'axios'
 import { tokenConfig } from '../../context/UserAuth'
+import { useOutletContext } from 'react-router-dom'
 interface Value {
 	label: string
 	value: string
@@ -15,7 +21,7 @@ interface Props {
 	setPhotoSrc: Dispatch<SetStateAction<string>>
 }
 
-interface ProjectType {
+export interface ProjectType {
 	title: string
 	content: string
 	createdAt: Date
@@ -28,7 +34,10 @@ interface ProjectType {
 interface projectOderType {
 	projectOrder: string[]
 }
-
+export interface projectorderType {
+	id: string
+	projectOrder: string[]
+}
 const ProjecctForm = ({ photoSrc, setPhotoSrc }: Props) => {
 	const [value, setValue] = useState<Value[]>([])
 	const [pinned, setPinned] = useState(true)
@@ -38,6 +47,8 @@ const ProjecctForm = ({ photoSrc, setPhotoSrc }: Props) => {
 	const webRef = useRef<HTMLInputElement>(null)
 	const githubRef = useRef<HTMLInputElement>(null)
 	const [error, setError] = useState<string>('')
+	const queryClient = useQueryClient()
+	const projectorder = useOutletContext<UseQueryResult<any, projectorderType>>()
 
 	const skills = () => {
 		if (value == null) return []
@@ -49,32 +60,40 @@ const ProjecctForm = ({ photoSrc, setPhotoSrc }: Props) => {
 			return axios.post('/api/projects', projectDetail, tokenConfig())
 		},
 		onSuccess: ({ data }) => {
-			// titleRef.current!.value = ''
-			// contentRef.current!.value = ''
-			// createAtRef.current!.value = ''
-			// githubRef.current!.value = ''
-			// setValue([])
-			// githubRef.current!.value = ''
-			// webRef.current!.value = ''
-			// setPinned(true)
-			// setPhotoSrc(preview)
-			// setError('')
+			queryClient.invalidateQueries({ queryKey: ['projects'] })
 			if (pinned) {
-				const id = JSON.stringify(data.id)
-				const newOrder = { projectOrder: [id] }
+				const projectId = data.id
+				const newOrder = {
+					id: projectorder.data[0].id,
+					projectOrder: [projectId],
+				}
 				mutationOrder.mutate(newOrder)
 			}
+			titleRef.current!.value = ''
+			contentRef.current!.value = ''
+			createAtRef.current!.value = ''
+			githubRef.current!.value = ''
+			setValue([])
+			githubRef.current!.value = ''
+			webRef.current!.value = ''
+			setPinned(true)
+			setPhotoSrc(preview)
+			setError('')
 		},
 		onError: () => {
-			setError('Sonething wrong in Updating!')
+			setError('Something wrong in Updating!')
 		},
 	})
 	const mutationOrder = useMutation({
 		mutationFn: (projectOrder: projectOderType) => {
-			return axios.put('/api/projectorder', projectOrder)
+			return axios.put('/api/projectorder/push', projectOrder, tokenConfig())
+		},
+		onSuccess: () => {
+			setError('')
+			queryClient.invalidateQueries({ queryKey: ['projectorder'] })
 		},
 		onError: () => {
-			setError('Sonething wrong in Update Order!')
+			setError('Something wrong in Update Order!')
 		},
 	})
 	const uploadProject = () => {
@@ -90,7 +109,7 @@ const ProjecctForm = ({ photoSrc, setPhotoSrc }: Props) => {
 			githubSrc: githubRef.current!.value,
 			websiteSrc: webRef.current!.value,
 			pinned: pinned,
-			image: photoSrc,
+			image: photoSrc.split(',')[1],
 		}
 		mutation.mutate(projectDetail)
 	}

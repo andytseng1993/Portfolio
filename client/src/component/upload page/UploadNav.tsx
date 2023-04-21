@@ -17,29 +17,41 @@ const UploadNav = ({ children, currentUser }: AppNavbarProps) => {
 	const [show, setShow] = useState(false)
 	return (
 		<>
-			<Navbar bg="dark" expand="lg" variant="dark">
+			<Navbar collapseOnSelect bg="dark" expand="lg" variant="dark">
 				<Container>
 					<Navbar.Brand>
 						<Link to={'/'} className={classes.home}>
 							Home
 						</Link>
 					</Navbar.Brand>
-
-					<Nav className="text-light">
-						{currentUser.email === '' ? (
-							<>
-								<Nav.Item className="me-4">
-									<LoginModal show={show} setShow={setShow} />
-								</Nav.Item>
-							</>
-						) : (
-							<>
-								<Nav.Item>
-									<Logout />
-								</Nav.Item>
-							</>
-						)}
-					</Nav>
+					<Navbar.Toggle aria-controls="responsive-navbar-nav" />
+					<Navbar.Collapse id="responsive-navbar-nav">
+						<Nav className="ms-auto">
+							{currentUser.email === '' ? (
+								<>
+									<Nav.Item className="">
+										<LoginModal show={show} setShow={setShow} />
+									</Nav.Item>
+								</>
+							) : (
+								<>
+									<Nav.Item className=" text-end">
+										<Logout />
+									</Nav.Item>
+								</>
+							)}
+							<Nav.Item className="d-flex align-items-center ms-4 justify-content-end">
+								<Link to={'/update'} className={classes.home}>
+									Uploade Image
+								</Link>
+							</Nav.Item>
+							<Nav.Item className="d-flex align-items-center ms-4 my-2 justify-content-end">
+								<Link to={'/update/reorder'} className={classes.home}>
+									Reorder
+								</Link>
+							</Nav.Item>
+						</Nav>
+					</Navbar.Collapse>
 				</Container>
 			</Navbar>
 			{children}
