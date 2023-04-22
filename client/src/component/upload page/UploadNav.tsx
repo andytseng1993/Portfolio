@@ -27,6 +27,16 @@ const UploadNav = ({ children, currentUser }: AppNavbarProps) => {
 					<Navbar.Toggle aria-controls="responsive-navbar-nav" />
 					<Navbar.Collapse id="responsive-navbar-nav">
 						<Nav className="ms-auto">
+							<Nav.Item className="d-flex align-items-center ms-4 justify-content-end">
+								<Link to={'/update'} className={classes.home}>
+									Uploade Image
+								</Link>
+							</Nav.Item>
+							<Nav.Item className="d-flex align-items-center m-4 my-2 justify-content-end">
+								<Link to={'/update/reorder'} className={classes.home}>
+									Reorder
+								</Link>
+							</Nav.Item>
 							{currentUser.email === '' ? (
 								<>
 									<Nav.Item className="">
@@ -40,16 +50,6 @@ const UploadNav = ({ children, currentUser }: AppNavbarProps) => {
 									</Nav.Item>
 								</>
 							)}
-							<Nav.Item className="d-flex align-items-center ms-4 justify-content-end">
-								<Link to={'/update'} className={classes.home}>
-									Uploade Image
-								</Link>
-							</Nav.Item>
-							<Nav.Item className="d-flex align-items-center ms-4 my-2 justify-content-end">
-								<Link to={'/update/reorder'} className={classes.home}>
-									Reorder
-								</Link>
-							</Nav.Item>
 						</Nav>
 					</Navbar.Collapse>
 				</Container>

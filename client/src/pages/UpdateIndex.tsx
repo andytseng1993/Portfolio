@@ -2,6 +2,7 @@ import { useRef, useState } from 'react'
 import { Button, Col, Form, Image, Row, Stack } from 'react-bootstrap'
 import preview from '../assets/preview.png'
 import ProjecctForm from '../component/upload page/ProjecctForm'
+import ProjectList from '../component/upload page/ProjectList'
 
 interface PhotoType {
 	name: string | null
@@ -11,6 +12,8 @@ const UpdateIndex = () => {
 	const hiddenFileInput = useRef<HTMLInputElement>(null)
 	const imageRef = useRef<HTMLImageElement>(null)
 	const [photoSrc, setPhotoSrc] = useState(preview)
+	const [editFn, setEditFn] = useState(false)
+	const [project, setProject] = useState({})
 
 	const handleCancelImage = () => {
 		hiddenFileInput.current!.value = ''
@@ -38,31 +41,55 @@ const UpdateIndex = () => {
 	return (
 		<>
 			<Row className="w-100 p-3">
-				<Col className="px-4 mt-5">
+				<div style={{ display: 'flex', cursor: 'pointer' }}>
+					<h3
+						style={editFn ? { color: 'gray' } : { color: 'black' }}
+						onClick={() => setEditFn(false)}
+					>
+						Upload Project
+					</h3>
+					<h3 style={{ margin: '0 10px' }}>/ </h3>
+					<h3
+						style={editFn ? { color: 'black' } : { color: 'gray' }}
+						onClick={() => setEditFn(true)}
+					>
+						Edit Project
+					</h3>
+				</div>
+				{editFn ? (
+					<Col xs={3} className="px-4 mt-4">
+						<ProjectList setProject={setProject} setPhotoSrc={setPhotoSrc} />
+					</Col>
+				) : null}
+				<Col xs={4} className="px-4 mt-3">
 					<Stack gap={2}>
-						<input
-							ref={hiddenFileInput}
-							onChange={(event) => handleLoadImageChange(event)}
-							style={{ display: 'none' }}
-							type="file"
-							accept="image/png, image/jpeg, image/gif"
-						/>
-						<Stack
-							direction="horizontal"
-							className="d-flex justify-content-center"
-							gap={4}
-						>
-							<Button className="w-50" onClick={handleLoadImage}>
-								Select Image
-							</Button>
-							<Button
-								className="w-25"
-								onClick={handleCancelImage}
-								variant="outline-secondary"
-							>
-								Cancel
-							</Button>
-						</Stack>
+						{editFn ? null : (
+							<>
+								<input
+									ref={hiddenFileInput}
+									onChange={(event) => handleLoadImageChange(event)}
+									style={{ display: 'none' }}
+									type="file"
+									accept="image/png, image/jpeg, image/gif"
+								/>
+								<Stack
+									direction="horizontal"
+									className="d-flex justify-content-center"
+									gap={4}
+								>
+									<Button className="w-50" onClick={handleLoadImage}>
+										Select Image
+									</Button>
+									<Button
+										className="w-25"
+										onClick={handleCancelImage}
+										variant="outline-secondary"
+									>
+										Cancel
+									</Button>
+								</Stack>
+							</>
+						)}
 
 						<Image
 							rounded
@@ -76,8 +103,13 @@ const UpdateIndex = () => {
 						></Image>
 					</Stack>
 				</Col>
-				<Col xs={6} className={'p-4'}>
-					<ProjecctForm photoSrc={photoSrc} setPhotoSrc={setPhotoSrc} />
+				<Col className={'p-4'}>
+					<ProjecctForm
+						editFn={editFn}
+						project={project}
+						photoSrc={photoSrc}
+						setPhotoSrc={setPhotoSrc}
+					/>
 				</Col>
 			</Row>
 		</>

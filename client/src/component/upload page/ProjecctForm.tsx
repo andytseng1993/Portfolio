@@ -1,10 +1,9 @@
 import { Button, Form } from 'react-bootstrap'
 import FormField from './FormField'
-import { Dispatch, SetStateAction, useRef, useState } from 'react'
+import { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react'
 import SkillsSelect from './SkillsSelect'
 import preview from '../../assets/preview.png'
 import {
-	QueryClient,
 	UseQueryResult,
 	useMutation,
 	useQueryClient,
@@ -12,33 +11,12 @@ import {
 import axios from 'axios'
 import { tokenConfig } from '../../context/UserAuth'
 import { useOutletContext } from 'react-router-dom'
-interface Value {
-	label: string
-	value: string
-}
-interface Props {
-	photoSrc: string
-	setPhotoSrc: Dispatch<SetStateAction<string>>
-}
+import UpdateBtn from './UpdateBtn'
+import DeleteBtn from './DeleteBtn'
+import { Project } from '../../pages/ReorderPage'
 
-export interface ProjectType {
-	title: string
-	content: string
-	createdAt: Date
-	tech: string[]
-	githubSrc: string
-	websiteSrc: string
-	pinned: boolean
-	image: string
-}
-interface projectOderType {
-	projectOrder: string[]
-}
-export interface projectorderType {
-	id: string
-	projectOrder: string[]
-}
-const ProjecctForm = ({ photoSrc, setPhotoSrc }: Props) => {
+const ProjecctForm = ({ photoSrc, setPhotoSrc, project, editFn }: Props) => {
+	const [projectId, setProjectID] = useState('')
 	const [value, setValue] = useState<Value[]>([])
 	const [pinned, setPinned] = useState(true)
 	const titleRef = useRef<HTMLInputElement>(null)
@@ -50,11 +28,57 @@ const ProjecctForm = ({ photoSrc, setPhotoSrc }: Props) => {
 	const queryClient = useQueryClient()
 	const projectorder = useOutletContext<UseQueryResult<any, projectorderType>>()
 
+	const reset = () => {
+		titleRef.current!.value = ''
+		contentRef.current!.value = ''
+		createAtRef.current!.value = ''
+		setValue([])
+		githubRef.current!.value = ''
+		webRef.current!.value = ''
+		setProjectID('')
+		setPinned(true)
+		setPhotoSrc(preview)
+		setError('')
+	}
+	useEffect(() => {
+		if (!editFn) {
+			reset()
+		}
+	}, [editFn])
+
+	useEffect(() => {
+		const dateTime = (time: Date) => {
+			const date = new Date(time)
+			const month =
+				date.getMonth() + 1 < 10
+					? '0' + (date.getMonth() + 1)
+					: date.getMonth() + 1
+			const day = date.getDate() < 10 ? '0' + date.getDate() : date.getDate()
+			return `${date.getFullYear()}-${month}-${day}`
+		}
+		if (Object.keys(project).length === 0 && !editFn) return
+		const projectType = (project: Project) => {
+			titleRef.current!.value = project.title
+			contentRef.current!.value = project.content
+			githubRef.current!.value = project.githubSrc
+			webRef.current!.value = project.websiteSrc
+			const skills = project.tech.map((skill) => {
+				return { label: skill, value: skill }
+			})
+			setProjectID(project.id)
+			setValue(skills)
+			setPinned(project.pinned)
+			createAtRef.current!.value = dateTime(project.createdAt)
+		}
+		projectType(project as Project)
+	}, [project])
+
 	const skills = () => {
 		if (value == null) return []
 		const result = value.map((skill) => skill.value)
 		return result
 	}
+
 	const mutation = useMutation({
 		mutationFn: (projectDetail: ProjectType) => {
 			return axios.post('/api/projects', projectDetail, tokenConfig())
@@ -69,16 +93,7 @@ const ProjecctForm = ({ photoSrc, setPhotoSrc }: Props) => {
 				}
 				mutationOrder.mutate(newOrder)
 			}
-			titleRef.current!.value = ''
-			contentRef.current!.value = ''
-			createAtRef.current!.value = ''
-			githubRef.current!.value = ''
-			setValue([])
-			githubRef.current!.value = ''
-			webRef.current!.value = ''
-			setPinned(true)
-			setPhotoSrc(preview)
-			setError('')
+			reset()
 		},
 		onError: () => {
 			setError('Something wrong in Updating!')
@@ -96,6 +111,27 @@ const ProjecctForm = ({ photoSrc, setPhotoSrc }: Props) => {
 			setError('Something wrong in Update Order!')
 		},
 	})
+
+	const mutationUpdate = useMutation({
+		mutationFn: (projectDetail: Project) => {
+			return axios.put('/api/projects', projectDetail, tokenConfig())
+		},
+		onSuccess: () => {
+			queryClient.invalidateQueries({ queryKey: ['projects'] })
+			reset()
+		},
+	})
+
+	const mutationDelete = useMutation({
+		mutationFn: (projectID: string) => {
+			return axios.delete(`/api/projects/${projectID}`, tokenConfig())
+		},
+		onSuccess: () => {
+			queryClient.invalidateQueries({ queryKey: ['projects'] })
+			reset()
+		},
+	})
+
 	const uploadProject = () => {
 		if (photoSrc === preview) return setError('Please upload image')
 		if (titleRef.current!.value === '' || contentRef.current!.value === '')
@@ -114,6 +150,21 @@ const ProjecctForm = ({ photoSrc, setPhotoSrc }: Props) => {
 		mutation.mutate(projectDetail)
 	}
 
+	const updateProject = () => {
+		if (projectId === '') return
+		const projectDetail = {
+			id: projectId,
+			title: titleRef.current!.value,
+			content: contentRef.current!.value,
+			createdAt: new Date(createAtRef.current!.value),
+			tech: skills(),
+			githubSrc: githubRef.current!.value,
+			websiteSrc: webRef.current!.value,
+			pinned: pinned,
+			image: photoSrc.split(',')[1],
+		}
+		mutationUpdate.mutate(projectDetail)
+	}
 	return (
 		<>
 			<h3 className="mb-4">Project Detail</h3>
@@ -176,12 +227,47 @@ const ProjecctForm = ({ photoSrc, setPhotoSrc }: Props) => {
 						{error}
 					</div>
 				) : null}
-				<Button className="w-50" onClick={uploadProject}>
-					Upload Project
-				</Button>
+				{editFn ? (
+					<>
+						<DeleteBtn projectId={projectId} mutationDelete={mutationDelete} />
+						<UpdateBtn updateProject={updateProject} />
+					</>
+				) : (
+					<Button className="w-50" onClick={uploadProject}>
+						Upload Project
+					</Button>
+				)}
 			</div>
 		</>
 	)
 }
 
 export default ProjecctForm
+interface Value {
+	label: string
+	value: string
+}
+interface Props {
+	photoSrc: string
+	setPhotoSrc: Dispatch<SetStateAction<string>>
+	project: ProjectType | {}
+	editFn: boolean
+}
+
+export interface ProjectType {
+	title: string
+	content: string
+	createdAt: Date
+	tech: string[]
+	githubSrc: string
+	websiteSrc: string
+	pinned: boolean
+	image: string
+}
+interface projectOderType {
+	projectOrder: string[]
+}
+export interface projectorderType {
+	id: string
+	projectOrder: string[]
+}
