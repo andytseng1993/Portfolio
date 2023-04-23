@@ -29,6 +29,7 @@ model User {
 }
 
 model ProjectOrder {
-  id           String   @id @default(auto()) @map("_id") @db.ObjectId
-  projectOrder String[]
+  id                   String   @id @default(auto()) @map("_id") @db.ObjectId
+  projectOrder         String[]
+  unpinnedProjectOrder String[]
 }

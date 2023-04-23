@@ -23,11 +23,12 @@ router.get('/', async (req, res) => {
 //@desc return projectorder
 //@access Public
 router.post('/', auth, async (req, res) => {
-  const { projectOrder } = req.body
+  const { projectOrder, unpinnedProjectOrder } = req.body
   try {
     const order = await prisma.projectOrder.create({
       data: {
-        projectOrder
+        projectOrder,
+        unpinnedProjectOrder
       },
     })
     return res.status(200).json(order)
@@ -40,14 +41,15 @@ router.post('/', auth, async (req, res) => {
 // @desc return projectorder
 // @access Public
 router.put('/', auth, async (req, res) => {
-  const { projectOrder, id } = req.body
+  const { projectOrder, unpinnedProjectOrder, id } = req.body
   try {
     const Order = await prisma.projectOrder.update({
       where: {
         id: id
       },
       data: {
-        projectOrder
+        projectOrder,
+        unpinnedProjectOrder
       },
     })
     return res.status(200).json(Order)
@@ -61,7 +63,7 @@ router.put('/', auth, async (req, res) => {
 //@desc return projectorder
 //@access Public
 router.put('/push', async (req, res) => {
-  const { projectOrder, id } = req.body
+  const { projectOrder, unpinnedProjectOrder, id } = req.body
   try {
     const order = await prisma.projectOrder.update({
       where: {
@@ -70,6 +72,9 @@ router.put('/push', async (req, res) => {
       data: {
         projectOrder: {
           push: projectOrder
+        },
+        unpinnedProjectOrder: {
+          push: unpinnedProjectOrder
         }
       },
     })

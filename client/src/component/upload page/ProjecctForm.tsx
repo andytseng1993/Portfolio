@@ -85,11 +85,20 @@ const ProjecctForm = ({ photoSrc, setPhotoSrc, project, editFn }: Props) => {
 		},
 		onSuccess: ({ data }) => {
 			queryClient.invalidateQueries({ queryKey: ['projects'] })
+			const projectId = data.id
 			if (pinned) {
-				const projectId = data.id
 				const newOrder = {
 					id: projectorder.data[0].id,
 					projectOrder: [projectId],
+					unpinnedProjectOrder: [],
+				}
+				mutationOrder.mutate(newOrder)
+			}
+			if (!pinned) {
+				const newOrder = {
+					id: projectorder.data[0].id,
+					projectOrder: [],
+					unpinnedProjectOrder: [projectId],
 				}
 				mutationOrder.mutate(newOrder)
 			}
@@ -100,12 +109,26 @@ const ProjecctForm = ({ photoSrc, setPhotoSrc, project, editFn }: Props) => {
 		},
 	})
 	const mutationOrder = useMutation({
-		mutationFn: (projectOrder: projectOderType) => {
+		mutationFn: (projectOrder: projectOrderType) => {
 			return axios.put('/api/projectorder/push', projectOrder, tokenConfig())
 		},
 		onSuccess: () => {
 			setError('')
 			queryClient.invalidateQueries({ queryKey: ['projectorder'] })
+		},
+		onError: () => {
+			setError('Something wrong in Update Order!')
+		},
+	})
+
+	const mutationUpdateOrder = useMutation({
+		mutationFn: (projectOrder: projectOrderType) => {
+			return axios.put('/api/projectorder', projectOrder, tokenConfig())
+		},
+		onSuccess: () => {
+			setError('')
+			queryClient.invalidateQueries({ queryKey: ['projectorder'] })
+			reset()
 		},
 		onError: () => {
 			setError('Something wrong in Update Order!')
@@ -118,7 +141,28 @@ const ProjecctForm = ({ photoSrc, setPhotoSrc, project, editFn }: Props) => {
 		},
 		onSuccess: () => {
 			queryClient.invalidateQueries({ queryKey: ['projects'] })
-			reset()
+			const projectOrder = projectorder.data[0].projectOrder.filter(
+				(id: string) => id !== projectId
+			)
+			const unpinnedProjectOrder =
+				projectorder.data[0].unpinnedProjectOrder.filter(
+					(id: string) => id !== projectId
+				)
+
+			if (pinned) {
+				projectOrder.push(projectId)
+			}
+			if (!pinned) {
+				unpinnedProjectOrder.push(projectId)
+			}
+			const newOrder = {
+				id: projectorder.data[0].id,
+				projectOrder,
+				unpinnedProjectOrder,
+			}
+			console.log(newOrder)
+
+			mutationUpdateOrder.mutate(newOrder)
 		},
 	})
 
@@ -133,9 +177,14 @@ const ProjecctForm = ({ photoSrc, setPhotoSrc, project, editFn }: Props) => {
 	})
 
 	const uploadProject = () => {
-		if (photoSrc === preview) return setError('Please upload image')
 		if (titleRef.current!.value === '' || contentRef.current!.value === '')
 			return setError('Please enter all fields.')
+		let imageSrc
+		if (photoSrc === preview) {
+			imageSrc = ''
+		} else {
+			imageSrc = photoSrc.split(',')[1]
+		}
 
 		const projectDetail = {
 			title: titleRef.current!.value,
@@ -145,13 +194,14 @@ const ProjecctForm = ({ photoSrc, setPhotoSrc, project, editFn }: Props) => {
 			githubSrc: githubRef.current!.value,
 			websiteSrc: webRef.current!.value,
 			pinned: pinned,
-			image: photoSrc.split(',')[1],
+			image: imageSrc,
 		}
 		mutation.mutate(projectDetail)
 	}
 
 	const updateProject = () => {
 		if (projectId === '') return
+
 		const projectDetail = {
 			id: projectId,
 			title: titleRef.current!.value,
@@ -264,8 +314,9 @@ export interface ProjectType {
 	pinned: boolean
 	image: string
 }
-interface projectOderType {
-	projectOrder: string[]
+export interface projectOrderType {
+	unpinnedProjectOrder?: String[]
+	projectOrder?: string[]
 }
 export interface projectorderType {
 	id: string

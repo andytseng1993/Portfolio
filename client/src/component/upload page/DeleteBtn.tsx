@@ -1,7 +1,15 @@
-import { UseMutateFunction, UseMutationResult } from '@tanstack/react-query'
-import { AxiosResponse } from 'axios'
+import {
+	UseMutationResult,
+	UseQueryResult,
+	useMutation,
+	useQueryClient,
+} from '@tanstack/react-query'
+import axios, { AxiosResponse } from 'axios'
 import { useState } from 'react'
 import { Button, Modal } from 'react-bootstrap'
+import { useOutletContext } from 'react-router-dom'
+import { projectOrderType } from './ProjecctForm'
+import { tokenConfig } from '../../context/UserAuth'
 
 interface Props {
 	projectId: string
@@ -13,13 +21,37 @@ interface Props {
 	>
 }
 const DeleteBtn = ({ projectId, mutationDelete }: Props) => {
+	const projectorder = useOutletContext<UseQueryResult<any, projectOrderType>>()
 	const [show, setShow] = useState(false)
+	const queryClient = useQueryClient()
+	const mutationOrder = useMutation({
+		mutationFn: (projectOrder: projectOrderType) => {
+			return axios.put('/api/projectorder', projectOrder, tokenConfig())
+		},
+		onSuccess: () => {
+			queryClient.invalidateQueries({ queryKey: ['projectorder'] })
+		},
+	})
+
 	const clickHandler = () => {
 		if (projectId === '') return
 		setShow(true)
 	}
 	const deleteHandler = () => {
+		const projectOrder = projectorder.data[0].projectOrder.filter(
+			(id: string) => id !== projectId
+		)
+		const unpinnedProjectOrder =
+			projectorder.data[0].unpinnedProjectOrder.filter(
+				(id: string) => id !== projectId
+			)
+		const newOrder = {
+			id: projectorder.data[0].id,
+			projectOrder,
+			unpinnedProjectOrder,
+		}
 		mutationDelete.mutate(projectId)
+		mutationOrder.mutate(newOrder)
 		setShow(false)
 	}
 	return (

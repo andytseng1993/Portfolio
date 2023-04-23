@@ -63,33 +63,31 @@ const UpdateIndex = () => {
 				) : null}
 				<Col xs={4} className="px-4 mt-3">
 					<Stack gap={2}>
-						{editFn ? null : (
-							<>
-								<input
-									ref={hiddenFileInput}
-									onChange={(event) => handleLoadImageChange(event)}
-									style={{ display: 'none' }}
-									type="file"
-									accept="image/png, image/jpeg, image/gif"
-								/>
-								<Stack
-									direction="horizontal"
-									className="d-flex justify-content-center"
-									gap={4}
+						<>
+							<input
+								ref={hiddenFileInput}
+								onChange={(event) => handleLoadImageChange(event)}
+								style={{ display: 'none' }}
+								type="file"
+								accept="image/png, image/jpeg, image/gif"
+							/>
+							<Stack
+								direction="horizontal"
+								className="d-flex justify-content-center"
+								gap={4}
+							>
+								<Button className="w-50" onClick={handleLoadImage}>
+									Select Image
+								</Button>
+								<Button
+									className="w-25"
+									onClick={handleCancelImage}
+									variant="outline-secondary"
 								>
-									<Button className="w-50" onClick={handleLoadImage}>
-										Select Image
-									</Button>
-									<Button
-										className="w-25"
-										onClick={handleCancelImage}
-										variant="outline-secondary"
-									>
-										Cancel
-									</Button>
-								</Stack>
-							</>
-						)}
+									Cancel
+								</Button>
+							</Stack>
+						</>
 
 						<Image
 							rounded

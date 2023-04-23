@@ -83,9 +83,10 @@
 }
 
 .file:hover {
-  transform: rotateX(15deg);
+  transform: rotateX(16deg);
   transform-origin: 100% 100%;
-  box-shadow: 0 -7px 20px 0 rgba(17, 5, 5, 0.657)
+  box-shadow: 0 -7px 20px 0 rgba(17, 5, 5, 0.657);
+  border-top: 2px solid #859fff;
 }
 
 .file:hover:after {
@@ -94,7 +95,7 @@
   top: 0;
   left: 0;
   border-radius: 20px;
-  background-color: #0000004a;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.2) 80%, transparent 98%, #78aaff);
   width: 100%;
   height: 100%;
 }

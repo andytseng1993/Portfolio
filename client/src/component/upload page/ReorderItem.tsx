@@ -20,7 +20,7 @@ const ReorderItem = ({ project }: { project: Project }) => {
 				<div style={{ padding: '10px' }}>
 					<div>{project.title}</div>
 					<div>{project.content}</div>
-					<div className={classes.tech}>{project.tech}</div>
+					<div className={classes.tech}>{project.tech.join(' ')}</div>
 				</div>
 			</Reorder.Item>
 		</>
