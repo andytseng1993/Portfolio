@@ -17,7 +17,7 @@ html {
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
-  overflow-x: auto;
+  overflow-x: hidden;
 }
 
 .loading {
