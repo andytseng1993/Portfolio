@@ -3,11 +3,48 @@ import classes from './ProjectPage.module.css'
 import Project from '../component/Project'
 import MiniProject from '../component/MiniProject'
 import { motion, useInView } from 'framer-motion'
-import { useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
+import { useQuery } from '@tanstack/react-query'
+import axios from 'axios'
+import { ProjectProps } from './ReorderPage'
 
 const ProjectPage = () => {
+	const [miniProjects, setMiniProjects] = useState([])
+	const [projectList, stProjectList] = useState([])
 	const ref = useRef(null)
-	const isInView = useInView(ref)
+	const projects = useQuery({
+		queryKey: ['projects'],
+		queryFn: async () => {
+			const { data } = await axios.get('/api/projects')
+			return data
+		},
+	})
+	const projectorder = useQuery({
+		queryKey: ['projectorder'],
+		queryFn: async () => {
+			const { data } = await axios.get('/api/projectorder')
+			return data
+		},
+	})
+
+	useEffect(() => {
+		if (
+			projectorder.data === undefined ||
+			projectorder.data[0] === undefined ||
+			projects.data === undefined
+		)
+			return
+		if (projectorder.data[0].length === 0 || projects.data.length === 0) return
+		const projectList = projectorder.data[0].projectOrder.map((id: string) =>
+			projects.data.find((project: ProjectProps) => project.id === id)
+		)
+		const miniProjectList = projectorder.data[0].unpinnedProjectOrder.map(
+			(id: string) =>
+				projects.data.find((project: ProjectProps) => project.id === id)
+		)
+		stProjectList(projectList)
+		setMiniProjects(miniProjectList)
+	}, [projects.data, projectorder.data])
 
 	return (
 		<section id="Projects" className={classes.content}>
@@ -17,9 +54,15 @@ const ProjectPage = () => {
 						<div className={classes.title}>My Projects</div>
 					</ScrollTriggerSection>
 				</div>
-				<Project />
-				<Project />
-				<Project />
+				{projects.isLoading ? (
+					<h3>Loading...</h3>
+				) : projects.isError ? (
+					<h3>Something wrong!</h3>
+				) : projectList.length > 0 ? (
+					projectList.map((project: ProjectProps) => (
+						<Project key={project.id} project={project} />
+					))
+				) : null}
 				<ScrollTriggerSection yFrom={30} yTo={0} xFrom={0}>
 					<h2 style={{ textAlign: 'center', margin: '100px 0 30px' }}>
 						Other Projects
@@ -32,10 +75,16 @@ const ProjectPage = () => {
 						variants={container}
 						viewport={{ once: true }}
 					>
-						<MiniProject />
-						<MiniProject />
-						<MiniProject />
-						<MiniProject />
+						{projectorder.isLoading ? (
+							<h3>Loading...</h3>
+						) : projectorder.isError ? (
+							<h3>Something wrong!</h3>
+						) : miniProjects.length > 0 ? (
+							miniProjects.map((project: ProjectProps) => (
+								<MiniProject key={project.id} project={project} />
+							))
+						) : null}
+
 						<div className={classes.flexWrap}></div>
 						<div className={classes.flexWrap}></div>
 					</motion.div>

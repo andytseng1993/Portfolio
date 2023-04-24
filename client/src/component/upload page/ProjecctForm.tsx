@@ -13,7 +13,7 @@ import { tokenConfig } from '../../context/UserAuth'
 import { useOutletContext } from 'react-router-dom'
 import UpdateBtn from './UpdateBtn'
 import DeleteBtn from './DeleteBtn'
-import { Project } from '../../pages/ReorderPage'
+import { ProjectProps } from '../../pages/ReorderPage'
 
 const ProjecctForm = ({ photoSrc, setPhotoSrc, project, editFn }: Props) => {
 	const [projectId, setProjectID] = useState('')
@@ -57,7 +57,7 @@ const ProjecctForm = ({ photoSrc, setPhotoSrc, project, editFn }: Props) => {
 			return `${date.getFullYear()}-${month}-${day}`
 		}
 		if (Object.keys(project).length === 0 && !editFn) return
-		const projectType = (project: Project) => {
+		const projectType = (project: ProjectProps) => {
 			titleRef.current!.value = project.title
 			contentRef.current!.value = project.content
 			githubRef.current!.value = project.githubSrc
@@ -70,7 +70,7 @@ const ProjecctForm = ({ photoSrc, setPhotoSrc, project, editFn }: Props) => {
 			setPinned(project.pinned)
 			createAtRef.current!.value = dateTime(project.createdAt)
 		}
-		projectType(project as Project)
+		projectType(project as ProjectProps)
 	}, [project])
 
 	const skills = () => {
@@ -136,7 +136,7 @@ const ProjecctForm = ({ photoSrc, setPhotoSrc, project, editFn }: Props) => {
 	})
 
 	const mutationUpdate = useMutation({
-		mutationFn: (projectDetail: Project) => {
+		mutationFn: (projectDetail: ProjectProps) => {
 			return axios.put('/api/projects', projectDetail, tokenConfig())
 		},
 		onSuccess: () => {

@@ -1,11 +1,11 @@
 import { useQuery } from '@tanstack/react-query'
-import { Project } from '../../pages/ReorderPage'
+import { ProjectProps } from '../../pages/ReorderPage'
 import axios from 'axios'
 import classes from './ProjectList.module.css'
 import { Dispatch, SetStateAction } from 'react'
 
 interface Props {
-	setProject: Dispatch<SetStateAction<Project>>
+	setProject: Dispatch<SetStateAction<ProjectProps>>
 	setPhotoSrc: Dispatch<SetStateAction<string>>
 }
 
@@ -26,7 +26,7 @@ const ProjectList = ({ setProject, setPhotoSrc }: Props) => {
 		})
 		return dateFormatter.format(new Date(data))
 	}
-	const handleEdit = (project: Project) => {
+	const handleEdit = (project: ProjectProps) => {
 		setProject(project)
 		setPhotoSrc(imageSrc(project.image))
 	}
@@ -39,7 +39,7 @@ const ProjectList = ({ setProject, setPhotoSrc }: Props) => {
 				) : isError ? (
 					<li>Something Wrong...</li>
 				) : (
-					data.map((project: Project) => (
+					data.map((project: ProjectProps) => (
 						<li
 							key={project.id}
 							className={classes.list}

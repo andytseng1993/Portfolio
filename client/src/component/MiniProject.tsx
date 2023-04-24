@@ -3,11 +3,23 @@ import classes from './MiniProject.module.css'
 import { IconContext } from 'react-icons'
 import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
+import { ProjectProps } from '../pages/ReorderPage'
 
-const MiniProject = () => {
+interface Props {
+	project?: ProjectProps
+}
+const MiniProject = ({ project }: Props) => {
 	const linkRef = useRef<HTMLAnchorElement>(null)
-	const clickHandler = () => {
+	const gitLinkRef = useRef<HTMLAnchorElement>(null)
+	const websiteHandler = () => {
 		linkRef.current?.click()
+	}
+	const gitHandler = () => {
+		gitLinkRef.current?.click()
+	}
+	const clickHandler = () => {
+		if (project?.websiteSrc === '') return gitHandler()
+		if (project?.githubSrc === '') return websiteHandler()
 	}
 	return (
 		<motion.div className={classes.miniproject} variants={item}>
@@ -16,28 +28,34 @@ const MiniProject = () => {
 			</div>
 			<div className={classes.fileTop}>
 				<IconContext.Provider value={{ className: `${classes.icon}` }}>
-					<FiExternalLink />
-					<FiGithub />
+					{project?.websiteSrc === '' ? (
+						<FiExternalLink onClick={websiteHandler} />
+					) : null}
+					{project?.githubSrc === '' ? <FiGithub onClick={gitHandler} /> : null}
 				</IconContext.Provider>
 			</div>
+
 			<div className={classes.file} onClick={clickHandler}>
 				<IconContext.Provider value={{ className: `${classes.fileIcon}` }}>
-					<FiExternalLink />
+					{project?.websiteSrc === '' ? <FiExternalLink /> : <FiGithub />}
 				</IconContext.Provider>
 				<div>
-					<h3 className={classes.title}>Title</h3>
-					<p style={{ fontSize: 17 }}>
-						Hi there Hi thereHi thereHi thereHi thereHi thereHi thereHi thereHi
-						there Hi thereHi thereHi there Hi thereHi thereHi thereHi thereHi
-						there Hi thereHi there
-					</p>
+					<h4 className={classes.title}>{project?.title}</h4>
+					<p style={{ fontSize: 17 }}>{project?.content}</p>
 				</div>
-				<div className={classes.skills}>skill skill skill skill skill</div>
+				<div className={classes.skills}>{project?.tech.join(' ')}</div>
 			</div>
+			<div className={classes.paper}></div>
 			<a
 				className={classes.bodyLink}
 				ref={linkRef}
-				href="https://www.w3schools.com"
+				href={project?.websiteSrc}
+				target="_blank"
+			></a>
+			<a
+				className={classes.bodyLink}
+				ref={gitLinkRef}
+				href={project?.githubSrc}
 				target="_blank"
 			></a>
 		</motion.div>

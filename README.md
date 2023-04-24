@@ -38,3 +38,6 @@
 2. useRef is generic if you use it with TypeScript, so you can define the referenced element type like const ref = useRef<Type>()
 
 - `const accountRef = useRef<HTMLInputElement>()`
+
+3. React-Router
+   After using `<Outlet context={something} />`, we can use ` useOutletContext()` to very children page to get the context.

@@ -9,7 +9,6 @@ import { useOutletContext } from 'react-router-dom'
 import {
 	ProjectType,
 	projectOrderType,
-	projectorderType,
 } from '../component/upload page/ProjecctForm'
 import { useEffect, useState } from 'react'
 import { Reorder } from 'framer-motion'
@@ -17,13 +16,13 @@ import ReorderItem from '../component/upload page/ReorderItem'
 import { Button, Modal } from 'react-bootstrap'
 import { tokenConfig } from '../context/UserAuth'
 
-export interface Project extends ProjectType {
+export interface ProjectProps extends ProjectType {
 	id: string
 }
 
 const ReorderPage = () => {
-	const [list, setList] = useState<Project[]>([])
-	const [unPinnedList, setUnPinnedList] = useState<Project[]>([])
+	const [list, setList] = useState<ProjectProps[]>([])
+	const [unPinnedList, setUnPinnedList] = useState<ProjectProps[]>([])
 	const [show, setShow] = useState(false)
 	const [unPinnedShow, setUnPinnedShow] = useState(false)
 	const queryClient = useQueryClient()
@@ -53,7 +52,7 @@ const ReorderPage = () => {
 		const projectList = projectorder.data[0].projectOrder.map(
 			(projectId: string) => {
 				const project = projects.data.find(
-					(project: Project) => project.id === projectId
+					(project: ProjectProps) => project.id === projectId
 				)
 				return project
 			}
@@ -61,16 +60,16 @@ const ReorderPage = () => {
 		const unPinnedProjectList = projectorder.data[0].unpinnedProjectOrder.map(
 			(projectId: string) => {
 				const project = projects.data.find(
-					(project: Project) => project.id === projectId
+					(project: ProjectProps) => project.id === projectId
 				)
 				return project
 			}
 		)
 		const result = projectList.filter(
-			(project: Project) => typeof project === 'object'
+			(project: ProjectProps) => typeof project === 'object'
 		)
 		const unPinnedResult = unPinnedProjectList.filter(
-			(project: Project) => typeof project === 'object'
+			(project: ProjectProps) => typeof project === 'object'
 		)
 		setUnPinnedList(unPinnedResult)
 		setList(result)

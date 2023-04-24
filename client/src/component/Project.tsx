@@ -3,8 +3,12 @@ import ScrollTriggerSection from './ScrollTriggerSection'
 import { FiExternalLink, FiGithub } from 'react-icons/fi'
 import projectPicture from '../assets/pathFinding.png'
 import classes from './Project.module.css'
+import { ProjectProps } from '../pages/ReorderPage'
 
-const Project = () => {
+interface Props {
+	project: ProjectProps
+}
+const Project = ({ project }: Props) => {
 	return (
 		<>
 			<div className={`${classes.project} boxReverse`}>
