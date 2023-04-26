@@ -1,11 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Catamaran:wght@400;500;600;700;800&display=swap');
+
 .project {
+  font-family: Catamaran, Arial, sans-serif;
   display: flex;
   justify-content: center;
-  align-items: stretch;
+  align-items: center;
   position: relative;
   margin: 0px auto 40px;
   padding: 0 15px;
-  max-width: 1200px;
+  max-width: 1300px;
 }
 
 .projectBox {
@@ -26,6 +29,7 @@
   border-radius: 10px;
   padding: 10px;
   background-color: #0000004a;
+  cursor: pointer;
 }
 
 .projectImg:hover:after {
@@ -34,6 +38,10 @@
   background-color: #0000004a;
   width: 100%;
   height: 100%;
+  border: 2px #78aaff solid;
+  box-shadow: 0px 0px 5px #78aaff87;
+  border-radius: 10px;
+  transition: 0.3s;
 }
 
 .image {
@@ -41,6 +49,30 @@
   height: auto;
   object-fit: cover;
   border-radius: 10px;
+}
+
+.fileIcon {
+  position: absolute;
+  right: 50%;
+  top: 50%;
+  opacity: 0;
+  z-index: 20;
+  background: #abc8ff;
+  color: #17356a;
+  width: 80px;
+  height: 80px;
+  padding: 20px;
+  border-radius: 30px;
+  transform: translate(50%, -25%);
+  transition: transform 0.2s;
+}
+
+.projectImg:hover .fileIcon {
+  right: 50%;
+  top: 50%;
+  position: absolute;
+  transform: translate(50%, -50%);
+  opacity: 1;
 }
 
 .projectContent {
@@ -62,8 +94,7 @@
 
 .projectDate {
   text-align: right;
-  font-size: 18px;
-  margin-bottom: 5px;
+  font-size: 22px;
   padding-left: 20px;
 }
 
@@ -80,6 +111,8 @@
   border-bottom: rgba(137, 115, 247, 0.6) 1px solid;
   margin-top: 5px;
   font-size: 18px;
+  white-space: break-spaces;
+
 }
 
 .links {
@@ -88,21 +121,27 @@
 }
 
 .skills {
-  display: flex;
-  flex-direction: row-reverse;
   padding: 0;
   margin: 0;
   font-size: 20px;
+  color: rgb(164, 232, 254);
+  font-weight: 400;
 }
 
-.skills li {
-  list-style-type: none;
-  color: rgba(255, 255, 255, 0.78);
-  margin-right: 5px;
-}
 
 .icon {
   font-size: 25px;
   margin-right: 20px;
-  font-size: 26px;
+  font-size: 30px;
+  cursor: pointer;
+}
+
+.icon:hover {
+  color: #86b2ff;
+  transform: translateY(1px);
+  transition: 0.2s;
+}
+
+.bodyLink {
+  display: none;
 }

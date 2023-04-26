@@ -1,5 +1,5 @@
 .miniproject {
-
+  z-index: 50;
   width: 380px;
   margin: 5px 10px;
   padding: 10px 10px;
@@ -56,12 +56,12 @@
   position: relative;
   font-size: 30px;
   z-index: 500px;
-  transform: translateY(-20px);
+  transform: translateY(-23px);
   cursor: pointer;
 }
 
 .icon:hover {
-  color: rgb(176, 155, 129);
+  color: #8eb7ff;
 }
 
 .file {
@@ -131,9 +131,9 @@
 .paper {
   position: absolute;
   left: 15px;
-  top: 75px;
+  top: 72px;
   width: 350px;
-  height: 100px;
+
 }
 
 .file:hover~.paper {
@@ -144,7 +144,7 @@
   height: 100px;
   background: rgb(234, 234, 234);
   border-radius: 5px;
-  transition: .5s;
+  transition: .2s;
 }
 
 .title {

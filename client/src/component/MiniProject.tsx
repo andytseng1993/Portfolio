@@ -28,16 +28,16 @@ const MiniProject = ({ project }: Props) => {
 			</div>
 			<div className={classes.fileTop}>
 				<IconContext.Provider value={{ className: `${classes.icon}` }}>
-					{project?.websiteSrc === '' ? (
+					{project?.websiteSrc !== '' ? (
 						<FiExternalLink onClick={websiteHandler} />
 					) : null}
-					{project?.githubSrc === '' ? <FiGithub onClick={gitHandler} /> : null}
+					{project?.githubSrc !== '' ? <FiGithub onClick={gitHandler} /> : null}
 				</IconContext.Provider>
 			</div>
 
 			<div className={classes.file} onClick={clickHandler}>
 				<IconContext.Provider value={{ className: `${classes.fileIcon}` }}>
-					{project?.websiteSrc === '' ? <FiExternalLink /> : <FiGithub />}
+					{project?.websiteSrc !== '' ? <FiExternalLink /> : <FiGithub />}
 				</IconContext.Provider>
 				<div>
 					<h4 className={classes.title}>{project?.title}</h4>
