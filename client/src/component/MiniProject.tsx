@@ -18,8 +18,8 @@ const MiniProject = ({ project }: Props) => {
 		gitLinkRef.current?.click()
 	}
 	const clickHandler = () => {
-		if (project?.websiteSrc === '') return gitHandler()
-		if (project?.githubSrc === '') return websiteHandler()
+		if (project?.websiteSrc !== '') return websiteHandler()
+		if (project?.githubSrc !== '') return gitHandler()
 	}
 	return (
 		<motion.div className={classes.miniproject} variants={item}>
@@ -41,9 +41,9 @@ const MiniProject = ({ project }: Props) => {
 				</IconContext.Provider>
 				<div>
 					<h4 className={classes.title}>{project?.title}</h4>
-					<p style={{ fontSize: 18 }}>{project?.content}</p>
+					<p style={{ fontSize: 17 }}>{project?.content}</p>
 				</div>
-				<div className={classes.skills}>{project?.tech.join(' ')}</div>
+				<div className={classes.skills}>{project?.tech.join('/ ')}</div>
 			</div>
 			<div className={classes.paper}></div>
 			<a

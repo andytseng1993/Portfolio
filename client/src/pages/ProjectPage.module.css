@@ -19,6 +19,7 @@
   text-shadow: 0 1px #000000, 0 2px #000000, 0 3px #000000, 0 4px #000000, 0 5px #000000, 0 6px #000000, 0 7px #000000, 0 8px #000000;
   transform: translateY(-8px);
   margin-bottom: 50px;
+  margin-top: 60px;
 }
 
 .title::after {
@@ -58,7 +59,7 @@
 }
 
 .OtherTitle {
-  font-size: 30px;
+  font-size: 38px;
   font-weight: 600;
   text-align: center;
   margin: 100px 0 30px;

@@ -11,7 +11,7 @@ const AboutPage = () => {
 		'JavaScript',
 		'React',
 		'Redux',
-		'Node.js',
+		'MERN',
 		'Vercel',
 		'Github',
 	])
@@ -22,17 +22,21 @@ const AboutPage = () => {
 				<div className={classes.about}>
 					<div className={classes.context}>
 						<p>
-							{`研究所畢業後，有幸能到美國進行求學，面對社會議題的討論，有助於培養邏輯分析與自我思考，同學之間互相分享的想法，瞭解到不同文化與價值觀，讓腦中想法更加寬廣，使思考更加的豐富與完整。打程式碼的過程中訓練邏輯思考能力，就像是實驗規劃，將過程拆解成不同的小步驟，再組合來達成目的，最後進行測試查看是否有漏洞，並加以修正。
-						\n求學過程中，因爲成績優異，得到留學生獎學金與President’s List的殊榮。在課餘的時間，有幸接到替藝術家架設網站的案子，設計與建構藝術畫廊網站，使畫作能夠在網頁與手機上無國界閲覽。透過不斷地查閲資料與學習去解決問題，讓網站的功能逐漸豐富與便利，並讓顧客使用感受更加舒適。於2021年得到證書後，建構模擬的電商平臺，利用學習到的資料的處理與建構技術，訓練與後端平臺溝通的方法，達成即時同步的數據體驗與安全身份認證。
+							{`
+							你好！我是曾兪銜。 我對網路開發的興趣始於2020年，藉由學習各種新知識與技術，成為前端網頁開發人員，開始構建網站和前端應用程式。
+							\n在課餘的時間，我有幸替藝術家架設網站，設計與建構畫廊網站，使畫作能夠在電腦與手機上無國界閲覽，我努力的建立功能，不僅讓圖片讀取更加流暢，還使顧客使用感受更加舒適，我也透過不斷地查閲資料與學習去解決問題。
+							\n我願意接受工作機會，在那裡我可以做出貢獻、學習和成長。 如果您有與我的技能和經驗相匹配的好機會，請隨時與我聯絡。
 					`}
 						</p>
-						<div className={classes.skillTitle}>My skills</div>
-						<div className={classes.skills}>
-							{skills.map((skill) => (
-								<div key={skill} className={classes.skill}>
-									{skill}
-								</div>
-							))}
+						<div>
+							<div className={classes.skillTitle}>My skills</div>
+							<div className={classes.skills}>
+								{skills.map((skill) => (
+									<div key={skill} className={classes.skill}>
+										{skill}
+									</div>
+								))}
+							</div>
 						</div>
 					</div>
 					<div className={classes.canvas}>

@@ -60,7 +60,7 @@ const Project = ({ project }: Props) => {
 						</div>
 						<div className={classes.projectContext}>
 							<div style={{ marginBottom: 10 }}>{project.content}</div>
-							<div className={classes.skills}>{project.tech.join('/')}</div>
+							<div className={classes.skills}>{project.tech.join(' / ')}</div>
 						</div>
 					</div>
 				</ScrollTriggerSection>

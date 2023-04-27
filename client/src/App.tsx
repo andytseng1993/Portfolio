@@ -26,18 +26,18 @@ export const scroll = () => {
 
 function App() {
 	const queryClient = new QueryClient()
-	const [isLoading, setIsLoading] = useState(false)
+	const [isLoading, setIsLoading] = useState(true)
 
-	// useEffect(() => {
-	// 	setIsLoading(true)
-	// 	lockScroll()
-	// 	setTimeout(() => {
-	// 		setIsLoading(false)
-	// 	}, 4000)
-	// 	setTimeout(() => {
-	// 		scroll()
-	// 	}, 6000)
-	// }, [])
+	useEffect(() => {
+		setIsLoading(true)
+		lockScroll()
+		setTimeout(() => {
+			setIsLoading(false)
+		}, 4000)
+		setTimeout(() => {
+			scroll()
+		}, 6000)
+	}, [])
 
 	const router = createBrowserRouter([
 		{
