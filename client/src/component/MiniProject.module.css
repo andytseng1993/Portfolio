@@ -35,7 +35,7 @@
   height: 43px;
   right: -37px;
   bottom: 0px;
-  background-color: #1F3359;
+  background-color: #222f52;
   border-radius: 0px 0px 0px 30px;
   z-index: 10;
 }
@@ -132,15 +132,14 @@
   position: absolute;
   left: 15px;
   top: 72px;
-  width: 350px;
-
+  width: calc(100% - 35px);
 }
 
 .file:hover~.paper {
   position: absolute;
   left: 15px;
   top: 65px;
-  width: 350px;
+  width: calc(100% - 35px);
   height: 100px;
   background: rgb(234, 234, 234);
   border-radius: 5px;
@@ -148,7 +147,8 @@
 }
 
 .title {
-  color: #d0edff;
+  color: #ecf8ff;
+  font-size: 26px;
 }
 
 .skills {
@@ -158,4 +158,10 @@
 
 .bodyLink {
   display: none;
+}
+
+@media only screen and (max-width: 875px) {
+  .miniproject {
+    margin-bottom: 30px;
+  }
 }

@@ -112,7 +112,6 @@
   margin-top: 5px;
   font-size: 18px;
   white-space: break-spaces;
-
 }
 
 .links {
@@ -123,7 +122,7 @@
 .skills {
   padding: 0;
   margin: 0;
-  font-size: 20px;
+  font-size: 18px;
   color: rgb(164, 232, 254);
   font-weight: 400;
 }
@@ -144,4 +143,63 @@
 
 .bodyLink {
   display: none;
+}
+
+@media only screen and (max-width: 1250px) {
+  .projectImg {
+    width: 35vw;
+  }
+
+  .image {
+    width: calc(35vw - 20px);
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  .project {
+    padding: 0 5px;
+  }
+
+  .projectContent {
+    padding: 0 10px;
+  }
+
+  .projectContext {
+    padding: 10px
+  }
+}
+
+@media only screen and (max-width: 750px) {
+  .project {
+    flex-direction: column;
+  }
+
+  .projectContent {
+    padding: 0;
+  }
+
+  .projectImg {
+    width: 80vw;
+    margin-bottom: 20px;
+    height: auto;
+  }
+
+  .image {
+    width: calc(80vw - 20px);
+  }
+}
+
+@media only screen and (max-width: 415px) {
+  .projectContext {
+    padding: 15px 10px;
+  }
+
+  .projectContent {
+    padding: 0;
+  }
+
+  .projectImg {
+    width: 80vw;
+    height: auto;
+  }
 }

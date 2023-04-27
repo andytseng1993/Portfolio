@@ -64,9 +64,12 @@ const ProjectPage = () => {
 					))
 				) : null}
 				<ScrollTriggerSection yFrom={30} yTo={0} xFrom={0}>
-					<h2 style={{ textAlign: 'center', margin: '100px 0 30px' }}>
+					<div
+						className={classes.OtherTitle}
+						style={{ textAlign: 'center', margin: '100px 0 30px' }}
+					>
 						Other Projects
-					</h2>
+					</div>
 					<motion.div
 						ref={ref}
 						className={classes.miniprojects}

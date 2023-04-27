@@ -34,6 +34,7 @@
 }
 
 .context {
+  color: #B6D8F5;
   width: 550px;
   line-height: 1.8rem;
   margin-right: 40px;
@@ -76,10 +77,17 @@
 .skill {
   border-radius: 5px;
   padding: 5px 10px;
-  background-color: rgba(217, 217, 217, 0.999);
+  background-color: rgba(136, 243, 241, 0.999);
   margin: 5px;
   color: rgb(0, 0, 103);
   font-weight: 600;
+}
+
+.selfLabel {
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: center;
+  align-items: center;
 }
 
 @media only screen and (max-width: 1250px) {
@@ -112,7 +120,7 @@
   }
 
   .about {
-    flex-direction: column;
+    flex-direction: column-reverse;
     justify-content: center;
     align-items: center;
   }

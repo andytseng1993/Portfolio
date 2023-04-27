@@ -76,3 +76,10 @@ input[type="range"]::-webkit-slider-thumb:active {
     margin-bottom: 0;
   }
 }
+
+@media only screen and (max-width: 750px) {
+  .boxReverse:nth-child(2n+1) {
+    flex-direction: column;
+  }
+
+}

@@ -38,7 +38,7 @@ const AboutPage = () => {
 					<div className={classes.canvas}>
 						<div>
 							<AsciiCanvas cellsize={value} />
-							<label style={{ display: 'flex', flexDirection: 'column' }}>
+							<label className={classes.selfLabel}>
 								{value === 1 ? 'Original image' : `Resolution: ${value}px`}
 								<input
 									type="range"
