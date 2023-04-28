@@ -19,6 +19,11 @@ const NavBar = ({ children }: PropsWithChildren) => {
 
 	const controlNavbar = () => {
 		if (typeof window !== 'undefined') {
+			if (window.scrollY < 10) {
+				setShow(true)
+				setLastScrollY(window.scrollY)
+				return
+			}
 			if (window.scrollY > lastScrollY) {
 				setShow(false)
 			} else {

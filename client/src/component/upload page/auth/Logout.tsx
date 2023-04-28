@@ -13,7 +13,7 @@ const Logout = () => {
 
 	const logout = () => {
 		queryClient.invalidateQueries({ queryKey: ['user'] })
-		// localStorage.removeItem('token')
+		localStorage.removeItem('token')
 		navigate('/')
 	}
 	const toggle = () => {

@@ -105,7 +105,8 @@
   color: #bbd0f3;
   background: transparent;
   line-height: 1.5rem;
-  height: 100%;
+  min-height: 220px;
+  height: auto;
   padding: 20px;
   border-top: rgba(137, 115, 247, 0.6) 1px solid;
   border-bottom: rgba(137, 115, 247, 0.6) 1px solid;
@@ -143,6 +144,13 @@
 
 .bodyLink {
   display: none;
+}
+
+.dateArea {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 }
 
 @media only screen and (max-width: 1250px) {
@@ -191,7 +199,7 @@
 
 @media only screen and (max-width: 415px) {
   .projectContext {
-    padding: 15px 10px;
+    padding: 20px 10px;
   }
 
   .projectContent {
@@ -201,5 +209,13 @@
   .projectImg {
     width: 80vw;
     height: auto;
+  }
+
+  .dateArea {
+    margin: 5px 0;
+  }
+
+  .projectDate {
+    padding-left: 10px;
   }
 }

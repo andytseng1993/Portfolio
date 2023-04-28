@@ -1,9 +1,8 @@
 import { PrismaClient } from '@prisma/client'
 import express from 'express'
-import dotenv from 'dotenv'
 import auth from '../../middleware/auth'
 import { Buffer } from 'buffer'
-dotenv.config()
+
 const router = express.Router()
 const prisma = new PrismaClient()
 

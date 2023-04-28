@@ -42,6 +42,9 @@ const ProjectPage = () => {
 			(id: string) =>
 				projects.data.find((project: ProjectProps) => project.id === id)
 		)
+		console.log(projectList)
+		console.log(projectorder.data[0])
+
 		stProjectList(projectList)
 		setMiniProjects(miniProjectList)
 	}, [projects.data, projectorder.data])

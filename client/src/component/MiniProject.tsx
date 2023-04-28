@@ -41,7 +41,7 @@ const MiniProject = ({ project }: Props) => {
 				</IconContext.Provider>
 				<div>
 					<h4 className={classes.title}>{project?.title}</h4>
-					<p style={{ fontSize: 17 }}>{project?.content}</p>
+					<p style={{ fontSize: 16 }}>{project?.content}</p>
 				</div>
 				<div className={classes.skills}>{project?.tech.join('/ ')}</div>
 			</div>

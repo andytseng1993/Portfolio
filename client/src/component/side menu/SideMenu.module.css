@@ -105,4 +105,8 @@
   .sideBarClose {
     margin-right: 0;
   }
+
+  .btn {
+    right: 40px;
+  }
 }

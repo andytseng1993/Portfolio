@@ -25,13 +25,14 @@ const AsciiCanvas = memo(function Canvas(props: { cellsize: number }) {
 				} else {
 					context.drawImage(image, 0, 0, canvas.width, canvas.height)
 					let pixels = context.getImageData(0, 0, canvas.width, canvas.height)
-					imageCellArray = scanImage(cellsize, pixels)
+					imageCellArray = scanImage(cellsize, pixels, deviceRatio)
 					drawAscii(
 						context,
 						canvas.width,
 						canvas.height,
 						imageCellArray,
-						cellsize
+						cellsize,
+						deviceRatio
 					)
 					context.scale(deviceRatio, deviceRatio)
 				}

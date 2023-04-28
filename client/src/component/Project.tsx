@@ -43,7 +43,7 @@ const Project = ({ project }: Props) => {
 				<ScrollTriggerSection xFrom={200}>
 					<div className={classes.projectContent}>
 						<div className={classes.projectTitle}>{project.title}</div>
-						<div style={{ display: 'flex', justifyContent: 'space-between' }}>
+						<div className={classes.dateArea}>
 							<div className={classes.projectDate}>
 								{dateTime(project.createdAt)}
 							</div>

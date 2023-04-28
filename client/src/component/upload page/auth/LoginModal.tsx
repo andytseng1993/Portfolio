@@ -12,6 +12,7 @@ import {
 	Row,
 	Stack,
 } from 'react-bootstrap'
+import { useNavigate } from 'react-router-dom'
 
 interface User {
 	email: string
@@ -27,6 +28,7 @@ const LoginModal = ({ show, setShow }: LoginProps) => {
 	const passwordRef = useRef<HTMLInputElement>(null)
 	const [error, setError] = useState('')
 	const queryClient = useQueryClient()
+	const navigate = useNavigate()
 
 	const mutation = useMutation({
 		mutationFn: async (userData: User) => {
@@ -40,8 +42,9 @@ const LoginModal = ({ show, setShow }: LoginProps) => {
 		},
 		onSuccess: (data) => {
 			localStorage.setItem('token', JSON.stringify(data.token))
-			queryClient.invalidateQueries(['user'])
+			queryClient.invalidateQueries({ queryKey: ['user'] })
 			toggle()
+			navigate('/update')
 		},
 	})
 	const toggle = () => {

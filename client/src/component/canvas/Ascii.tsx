@@ -7,10 +7,14 @@ export const cell = (x: number, y: number, symbol: string, color: string) => {
 	}
 }
 
-export const scanImage = (cellSize: number, pixels: ImageData) => {
+export const scanImage = (
+	cellSize: number,
+	pixels: ImageData,
+	deviceRatio: number
+) => {
 	let imageCellArray = []
-	for (let y = 0; y < pixels.height; y += cellSize) {
-		for (let x = 0; x < pixels.width; x += cellSize) {
+	for (let y = 0; y < pixels.height; y += cellSize * deviceRatio) {
+		for (let x = 0; x < pixels.width; x += cellSize * deviceRatio) {
 			const posX = x * 4
 			const posY = y * 4
 			const pos = posY * pixels.width + posX
@@ -55,11 +59,12 @@ export const drawAscii = (
 		symbol: string
 		color: string
 	}[],
-	cellSize: number
+	cellSize: number,
+	deviceRatio: number
 ) => {
 	ctx.clearRect(0, 0, width, height)
 	imageCellArray.forEach((cell) => {
-		draw(ctx, cell.x, cell.y, cell.symbol, cell.color, cellSize)
+		draw(ctx, cell.x, cell.y, cell.symbol, cell.color, cellSize, deviceRatio)
 	})
 }
 
@@ -69,9 +74,10 @@ export const draw = (
 	y: number,
 	symbol: string,
 	color: string,
-	cellSize: number
+	cellSize: number,
+	deviceRatio: number
 ) => {
-	ctx.font = cellSize * 1.2 + 'px Verdana'
+	ctx.font = cellSize * deviceRatio * 1.2 + 'px Verdana'
 	ctx.fillStyle = 'white'
 	ctx.fillText(symbol, x + 0.1, y + 0.1)
 	ctx.fillStyle = color

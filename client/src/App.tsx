@@ -3,12 +3,12 @@ import 'bootstrap/dist/css/bootstrap.css'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { UserAuthContextProvider } from './context/UserAuth'
+import { animateScroll } from 'react-scroll'
 import LoadingPage from './loading/LoadingPage'
 import WelcomePage from './pages/WelcomePage'
 import AboutPage from './pages/AboutPage'
 import ProjectPage from './pages/ProjectPage'
 import NavBar from './pages/NavBar'
-import UpdatePage from './pages/UpdateIndex'
 import Update from './pages/Update'
 import ProtectedRouter from './component/upload page/ProtectedRouter'
 import UpdateIndex from './pages/UpdateIndex'
@@ -29,6 +29,7 @@ function App() {
 	const [isLoading, setIsLoading] = useState(true)
 
 	useEffect(() => {
+		animateScroll.scrollToTop({ smooth: false, duration: 0 })
 		setIsLoading(true)
 		lockScroll()
 		setTimeout(() => {
