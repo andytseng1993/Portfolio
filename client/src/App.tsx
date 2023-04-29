@@ -29,7 +29,9 @@ function App() {
 	const [isLoading, setIsLoading] = useState(true)
 
 	useEffect(() => {
-		animateScroll.scrollToTop({ smooth: false, duration: 0 })
+		const vh = window.innerHeight * 0.01
+		document.documentElement.style.setProperty('--vh', `${vh}px`)
+		window.scrollTo(0, 0)
 		setIsLoading(true)
 		lockScroll()
 		setTimeout(() => {

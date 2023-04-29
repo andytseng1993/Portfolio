@@ -92,10 +92,13 @@
   margin-bottom: 5px;
 }
 
+.dateArea {
+  padding: 5px 20px;
+}
+
 .projectDate {
   text-align: right;
   font-size: 22px;
-  padding-left: 20px;
 }
 
 .projectContext {
@@ -131,7 +134,7 @@
 
 .icon {
   font-size: 25px;
-  margin-right: 20px;
+  margin-left: 20px;
   font-size: 30px;
   cursor: pointer;
 }
@@ -180,6 +183,21 @@
 @media only screen and (max-width: 750px) {
   .project {
     flex-direction: column;
+    padding: 0 20px;
+  }
+
+  .projectTitle {
+    font-size: 28px;
+    letter-spacing: 1px;
+  }
+
+  .dateArea {
+    padding: 5px 10px;
+  }
+
+  .projectContext {
+    padding: 20px 10px;
+    font-size: 17px;
   }
 
   .projectContent {
@@ -228,9 +246,5 @@
 
   .dateArea {
     margin: 5px 0;
-  }
-
-  .projectDate {
-    padding-left: 10px;
   }
 }
