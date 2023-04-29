@@ -25,11 +25,11 @@ const LoadingPage = ({ isLoading }: Props) => {
 					>
 						<motion.svg
 							xmlns="http://www.w3.org/2000/svg"
-							viewBox="0 0 108 108"
+							viewBox="0 0 100 108"
 							className={classes.item}
 						>
 							<motion.path
-								d="M49.9 0 99.8 29.1V79.1L49.9 108.1 0 79V29L49.9 0Z"
+								d="M49.9 0 99.8 29.1V79.1L49.9 108 0 79V29L49.9 0Z"
 								variants={icon}
 								initial="hidden"
 								animate="visible"
@@ -84,19 +84,21 @@ const icon = {
 }
 const container = {
 	visible: {
-		rotateX: [0, 180, 360],
+		rotateZ: [0, 180, 360],
 		transition: {
-			duration: 2,
+			duration: 1.5,
 			ease: 'easeInOut',
 			times: [0, 0.5, 1],
 			repeat: Infinity,
 			repeatDelay: 0.5,
-			delay: 2,
+			delay: 0.5,
 		},
 	},
 	closed: {
-		rotateX: [0],
+		rotateZ: [0],
+		scale: 0,
 		transition: {
+			delay: 1,
 			duration: 1,
 		},
 	},

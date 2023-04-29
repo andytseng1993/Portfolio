@@ -15,11 +15,10 @@ model Project {
   title      String
   content    String
   createdAt  DateTime
-  tech       String?
+  tech       String[]
   githubSrc  String?
   websiteSrc String?
   image      Bytes?
-  order      Int
   pinned     Boolean
 }
 
@@ -27,4 +26,10 @@ model User {
   id       String @id @default(auto()) @map("_id") @db.ObjectId
   email    String @unique
   password String
+}
+
+model ProjectOrder {
+  id                   String   @id @default(auto()) @map("_id") @db.ObjectId
+  projectOrder         String[]
+  unpinnedProjectOrder String[]
 }

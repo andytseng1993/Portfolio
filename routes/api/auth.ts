@@ -1,22 +1,31 @@
 import { PrismaClient } from '@prisma/client'
-import express from 'express'
+import express, { Request } from 'express'
 import jwt from 'jsonwebtoken'
-import auth from '../../middleware/auth.mjs'
+import auth from '../../middleware/auth'
 import dotenv from 'dotenv'
+
+interface JwtPayload extends Request {
+	id: string
+}
 
 dotenv.config()
 const router = express.Router()
 const prisma = new PrismaClient()
+const privateKey = process.env.PRIVATE_KEY || 'privateKey'
 
 //@route GET api/auth/user,
 //@desc Auth user
 //@access Public
 
-router.get('/user', auth, async (req, res) => {
+router.get('/user', async (req, res) => {
 	try {
+		const token = req.header('x-auth-token')
+		if (!token)
+			return res.status(401).json({ msg: 'No token, authorization denied' })
+		const decode = jwt.verify(token, privateKey) as JwtPayload
 		const user = await prisma.user.findUnique({
 			where: {
-				id: req.user.id,
+				id: decode.id,
 			},
 			select: {
 				email: true,
@@ -52,14 +61,13 @@ router.post('/login', async (req, res) => {
 		if (password === user.password) {
 			jwt.sign(
 				{ id: user.id },
-				process.env.PRIVATE_KEY,
+				privateKey,
 				{ expiresIn: '2h' },
 				(err, token) => {
 					if (err) throw err
 					return res.status(200).json({
 						token,
 						user: {
-							id: user.id,
 							email: user.email,
 						},
 					})

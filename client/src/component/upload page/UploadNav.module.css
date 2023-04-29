@@ -1,0 +1,8 @@
+.home {
+  text-decoration: none;
+  color: white;
+}
+
+.home:hover {
+  color: rgb(0, 204, 255);
+}

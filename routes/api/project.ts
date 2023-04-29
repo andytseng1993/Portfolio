@@ -1,8 +1,8 @@
 import { PrismaClient } from '@prisma/client'
 import express from 'express'
-import dotenv from 'dotenv'
-import auth from '../../middleware/auth.mjs'
-dotenv.config()
+import auth from '../../middleware/auth'
+import { Buffer } from 'buffer'
+
 const router = express.Router()
 const prisma = new PrismaClient()
 
@@ -11,15 +11,11 @@ const prisma = new PrismaClient()
 //@access Public
 router.get('/', async (req, res) => {
 	try {
-		const projects = await prisma.project.findMany({
-			orderBy: {
-				order: 'desc',
-			},
-		})
+		const projects = await prisma.project.findMany()
 		const _projects = projects.map((project) => {
 			return {
 				...project,
-				image: project.image.toString('base64'),
+				image: project.image!.toString('base64'),
 			}
 		})
 		return res.status(200).json(_projects)
@@ -40,11 +36,10 @@ router.post('/', auth, async (req, res) => {
 		githubSrc,
 		websiteSrc,
 		image,
-		order,
 		pinned,
 	} = req.body
 	try {
-		await prisma.note.create({
+		const project = await prisma.project.create({
 			data: {
 				title,
 				content,
@@ -52,14 +47,50 @@ router.post('/', auth, async (req, res) => {
 				tech,
 				githubSrc,
 				websiteSrc,
-				order,
 				pinned,
 				image: Buffer.from(image, 'base64'),
 			},
 		})
-		return res.status(201).json({ success: true })
+		return res.status(200).json(project)
 	} catch (error) {
-		res.status(404).json({ success: false })
+		res.status(404).json({ error })
+	}
+})
+
+//@route PUT api/projects
+//@desc return new project
+//@access Private
+router.put('/', auth, async (req, res) => {
+	const {
+		id,
+		title,
+		content,
+		createdAt,
+		tech,
+		githubSrc,
+		websiteSrc,
+		image,
+		pinned,
+	} = req.body
+	try {
+		const project = await prisma.project.update({
+			where: {
+				id
+			},
+			data: {
+				title,
+				content,
+				createdAt,
+				tech,
+				githubSrc,
+				websiteSrc,
+				pinned,
+				image: Buffer.from(image, 'base64'),
+			},
+		})
+		return res.status(200).json(project)
+	} catch (error) {
+		res.status(404).json({ error })
 	}
 })
 

@@ -19,3 +19,25 @@
   - api/projects -- GET,
   - api/projects -- POST --> title,content,createdAt,tech,githubSrc,websiteSrc,image,order,pinned.
   - api/notes/:projectId -- DELETE
+
+# Client
+
+1.  [react-scroll]https://www.npmjs.com/package/react-scroll
+
+# Typescript
+
+1. If your image property contains ...
+   Image used as <img> element
+
+- `image?: HTMLImageElement`
+  URL to image.
+- `image?: String`
+  Image as file from <input> element
+- `image?: File`
+
+2. useRef is generic if you use it with TypeScript, so you can define the referenced element type like const ref = useRef<Type>()
+
+- `const accountRef = useRef<HTMLInputElement>()`
+
+3. React-Router
+   After using `<Outlet context={something} />`, we can use ` useOutletContext()` to very children page to get the context.

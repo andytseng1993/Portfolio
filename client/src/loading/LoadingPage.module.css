@@ -1,12 +1,12 @@
 .loading {
   width: 100vw;
-  height: 100vh;
+  height: 104vh;
   position: absolute;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgb(14, 6, 49);
-  z-index: 500;
+  background-color: #151930;
+  z-index: 1000;
 }
 
 .container {
@@ -22,7 +22,7 @@
 }
 
 .item {
-  width: 70%;
+  width: 80%;
   overflow: visible;
   stroke: #fff;
   stroke-width: 2;
@@ -32,8 +32,11 @@
 }
 
 .yu {
-  top: 45px;
-  left: 45px;
+  display: flex;
+  justify-items: center;
+  align-items: center;
+  top: 47px;
+  left: 50px;
   position: absolute;
   font-size: 40px;
   font-weight: 800;

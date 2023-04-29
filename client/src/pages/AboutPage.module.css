@@ -1,0 +1,155 @@
+.content {
+  min-height: 105vh;
+  /* line-height: 1.5rem; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 100px;
+}
+
+
+.title {
+  color: #ddd1ff;
+  height: auto;
+  font-size: 48px;
+  font-family: Catamaran, Arial, sans-serif;
+  font-weight: 700;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-shadow: 0 1px #000000, 0 2px #000000, 0 3px #000000, 0 4px #000000, 0 5px #000000, 0 6px #000000, 0 7px #000000, 0 8px #000000;
+  transform: translateY(-8px);
+}
+
+.title::after {
+  content: "";
+  display: block;
+  position: relative;
+  top: 0px;
+  width: 900px;
+  height: 1px;
+  padding-bottom: 3px;
+  margin-left: 20px;
+  background-color: #ddd1ff;
+}
+
+.context {
+  color: #B6D8F5;
+  width: 550px;
+  line-height: 1.8rem;
+  margin-right: 40px;
+  margin: 30px 40px 0px 40px;
+  font-size: 20px;
+  white-space: pre-line;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: start;
+}
+
+.introduction {
+  width: 700px;
+  margin-right: 50px;
+}
+
+
+.about {
+  display: flex;
+  justify-content: space-around;
+  align-items: stretch;
+  margin: 30px auto;
+}
+
+.canvas {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.skillTitle {
+  font-weight: 600;
+  font-family: Catamaran, Arial, sans-serif;
+  font-size: 28px;
+  margin: 30px 0px 14px;
+}
+
+.skills {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.skill {
+  border-radius: 5px;
+  padding: 5px 10px;
+  background-color: rgba(136, 243, 241, 0.999);
+  margin: 5px;
+  color: rgb(0, 0, 103);
+  font-weight: 600;
+}
+
+.selfLabel {
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: center;
+  align-items: center;
+}
+
+@media only screen and (max-width: 1250px) {
+  .title {
+    font-size: 40px;
+    padding: 10px 15px;
+    width: 90vw;
+    margin: 0px auto;
+  }
+
+  .title::after {
+    width: calc(90vw - 240px);
+    margin-left: 10px;
+  }
+
+  .context {
+    width: 40vw;
+    line-height: 1.8rem;
+    margin: 30px 40px 0px 40px;
+    font-size: 18px;
+    white-space: pre-line;
+  }
+
+}
+
+@media only screen and (max-width: 840px) {
+  .content {
+    padding-top: 75px;
+    height: auto;
+  }
+
+  .about {
+    flex-direction: column-reverse;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .context {
+    width: 80vw;
+    line-height: 1.8rem;
+    margin-right: 40px;
+    margin: 0px 40px;
+    font-size: 18px;
+    white-space: pre-line;
+  }
+
+  .canvas {
+    margin-bottom: 70px;
+  }
+}
+
+@media only screen and (max-width: 414px) {
+  .context {
+    font-size: 16px;
+  }
+
+  .skill {
+    padding: 2px 10px;
+    font-size: 16px;
+  }
+}
